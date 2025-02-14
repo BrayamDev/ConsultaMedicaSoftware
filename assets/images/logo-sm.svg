@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="189" height="191.226" viewBox="0 0 189 191.226">
+  <defs>
+    <filter id="Path_16" x="36.505" y="27.783" width="115.65" height="163.443" filterUnits="userSpaceOnUse">
+      <feOffset dy="15" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur"/>
+      <feFlood flood-opacity="0.259"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_8" data-name="Group 8" transform="translate(-485 -657)">
+    <circle id="Ellipse_1" data-name="Ellipse 1" cx="94.5" cy="94.5" r="94.5" transform="translate(485 657)" fill="#fff"/>
+    <g transform="matrix(1, 0, 0, 1, 485, 657)" filter="url(#Path_16)">
+      <path id="Path_16-2" data-name="Path 16" d="M550.995,800.546V720.718l70.65-38.615v77.4l-20.433,11.948V711.887l-6.234,3.463v59.914l-17.836,10.39V725.047l-6.407,3.81v59.568Z" transform="translate(-491.99 -646.82)" fill="#116aef"/>
+    </g>
+    <g id="stethoscope" transform="translate(576.32 742.5)">
+      <path id="Path_183" data-name="Path 183" d="M16.227,8H12.818A6.816,6.816,0,0,0,6,14.818V26.749H6a18.749,18.749,0,0,0,37.5,0V14.818A6.816,6.816,0,0,0,36.68,8H33.271" transform="translate(4.227 5.636)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Path_184" data-name="Path 184" d="M16,34.227a20.454,20.454,0,0,0,40.907,0V24" transform="translate(11.271 16.907)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Path_185" data-name="Path 185" d="M22,6v6.818" transform="translate(15.498 4.227)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Path_186" data-name="Path 186" d="M12,6v6.818" transform="translate(8.454 4.227)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Path_187" data-name="Path 187" d="M49.636,22.818A6.818,6.818,0,1,1,42.818,16,6.816,6.816,0,0,1,49.636,22.818Z" transform="translate(25.361 11.271)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+      <path id="Path_188" data-name="Path 188" d="M0,0H81.814V81.814H0Z" fill="none"/>
+    </g>
+  </g>
+</svg>
