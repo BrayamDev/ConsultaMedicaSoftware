@@ -130,8 +130,144 @@ include_once "../global/conexion.php";
                                     <label for="paciente" class="form-label">
                                         <i class="ri-user-line"></i> Paciente <span class="text-danger">*</span>
                                     </label>
-                                    <input type="text" class="form-control" id="paciente">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="paciente" placeholder="Buscar paciente">
+                                        <button class="btn btn-success text-dark" type="button" data-bs-toggle="modal" data-bs-target="#modalBuscarPaciente">
+                                            <i class="ri-search-line"></i> Buscar
+                                        </button>
+                                        <button class="btn btn-info text-dark" type="button" data-bs-toggle="modal" data-bs-target="#modalResumenUsuario">
+                                            <i class="ri-user-line"></i>
+                                        </button>
+                                    </div>
                                 </div>
+
+                                <!-- Modal para el resumen del usuario -->
+                                <div class="modal fade" id="modalResumenUsuario" tabindex="-1" aria-labelledby="modalResumenUsuarioLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered"> <!-- Se hace más grande y se centra -->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalResumenUsuarioLabel">Resumen del Usuario</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Contenido del resumen del usuario -->
+                                                <p><strong>Nombre:</strong> Juan Pérez</p>
+                                                <p><strong>Edad:</strong> 30 años</p>
+                                                <p><strong>Última visita:</strong> 10/10/2023</p>
+                                                <p><strong>Diagnóstico:</strong> Resfriado común</p>
+                                            </div>
+                                            <div class="modal-footer d-flex justify-content-between">
+                                                <button type="button" class="btn btn-info">
+                                                    <i class="ri-folder-user-line"></i> Ficha del paciente
+                                                </button>
+                                                <button type="button" class="btn btn-warning">
+                                                    <i class="ri-file-list-line"></i> Documentos del paciente
+                                                </button>
+                                                <button type="button" class="btn btn-secondary" id="cerrarModalResumen">Cerrar</button>
+                                                <script>
+                                                    document.getElementById("cerrarModalResumen").addEventListener("click", function() {
+                                                        var modal = document.getElementById("modalResumenUsuario");
+                                                        var modalInstance = bootstrap.Modal.getInstance(modal); // Obtiene la instancia activa del modal
+                                                        if (modalInstance) {
+                                                            modalInstance.hide(); // Cierra solo este modal
+                                                        }
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal de búsqueda de paciente -->
+                                <div class="modal fade" id="modalBuscarPaciente" tabindex="-1" aria-labelledby="modalBuscarPacienteLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-fullscreen">
+                                        <div class="modal-content" style="margin: 20px; height: calc(100vh - 40px); max-width: 1200px; margin-left: auto; margin-right: auto;">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalBuscarPacienteLabel">
+                                                    <i class="ri-search-line"></i> Buscar Paciente
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body" style="overflow-y: auto;">
+                                                <!-- Campo de búsqueda y checkboxes -->
+                                                <div class="row mb-3">
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" id="buscarPacienteInput" placeholder="Buscar paciente...">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" id="checkComienzaPorTexto">
+                                                            <label class="form-check-label" for="checkComienzaPorTexto">Comienza por texto</label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" id="checkContieneTexto">
+                                                            <label class="form-check-label" for="checkContieneTexto">Contiene texto</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Tabla de resultados -->
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Paciente/Historia</th>
+                                                                <th>Doc ID</th>
+                                                                <th>Móvil</th>
+                                                                <th>Teléfono</th>
+                                                                <th>Correo Electrónico</th>
+                                                                <th>Observaciones</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- Ejemplo de filas de datos -->
+                                                            <tr>
+                                                                <td>Juan Pérez</td>
+                                                                <td>12345678</td>
+                                                                <td>+34 600 123 456</td>
+                                                                <td>+34 91 123 45 67</td>
+                                                                <td>juan.perez@example.com</td>
+                                                                <td>Ninguna</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>María Gómez</td>
+                                                                <td>87654321</td>
+                                                                <td>+34 600 654 321</td>
+                                                                <td>+34 91 654 32 10</td>
+                                                                <td>maria.gomez@example.com</td>
+                                                                <td>Alergia a la penicilina</td>
+                                                            </tr>
+                                                            <!-- Más filas pueden agregarse dinámicamente -->
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" id="cerrarModalBuscarPaciente">Cerrar</button>
+                                                <button type="button" class="btn btn-success" id="seleccionarPaciente">Seleccionar</button>
+                                                <script>
+                                                    document.getElementById("cerrarModalBuscarPaciente").addEventListener("click", function() {
+                                                        var modal = document.getElementById("modalBuscarPaciente");
+                                                        var modalInstance = bootstrap.Modal.getInstance(modal);
+                                                        if (modalInstance) {
+                                                            modalInstance.hide();
+                                                        }
+                                                    });
+
+                                                    document.getElementById("seleccionarPaciente").addEventListener("click", function() {
+                                                        var modal = document.getElementById("modalBuscarPaciente");
+                                                        var modalInstance = bootstrap.Modal.getInstance(modal);
+                                                        if (modalInstance) {
+                                                            modalInstance.hide();
+                                                        }
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
 
                             <!-- Primera visita y Nueva alta en la misma fila -->
@@ -228,7 +364,6 @@ include_once "../global/conexion.php";
                                 </div>
                             </div>
 
-                            <!-- Submenú desplegable para Nueva Alta -->
                             <!-- Submenú desplegable para Nueva Alta -->
                             <div id="submenuNuevaAlta" class="mb-3" style="display: none;">
                                 <div class="row mb-3">
@@ -598,6 +733,14 @@ include_once "../global/conexion.php";
             } else {
                 submenuVisita.style.display = 'none';
             }
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const modalBuscarPaciente = document.getElementById("modalBuscarPaciente");
+
+            modalBuscarPaciente.addEventListener("hidden.bs.modal", function(event) {
+                event.stopPropagation(); // Evita que el cierre se propague a otros modales abiertos
+            });
         });
     </script>
 
