@@ -1,0 +1,556 @@
+/* Estilos generales de login */
+.auth-box {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.auth-box header {
+    padding: 0;
+    border-radius: 10px 10px 0 0;
+    text-align: right;
+    margin: -2rem -2rem 2rem -2rem;
+    overflow: hidden;
+}
+
+.auth-box header img.logo {
+    width: 50%;
+    height: auto;
+    display: block;
+    border-radius: 10px 10px 0 0;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.btn-primary {
+    background-color: #008000;
+    border: none;
+    transition: background-color 0.3s ease;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #006400;
+}
+
+.input-group button {
+    background-color: transparent;
+    border: 1px solid #ced4da;
+    transition: background-color 0.3s ease;
+}
+
+.input-group button:hover {
+    background-color: #f8f9fa;
+}
+
+
+/*OLVIDE CONTRASEÑA*/
+
+.auth-box {
+    background: #ffffff;
+    /* Fondo blanco */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* Sombra más pronunciada */
+    max-width: 400px;
+    /* Ancho máximo de la tarjeta */
+    margin: 0 auto;
+    /* Centrar la tarjeta */
+}
+
+.auth-box header {
+    padding: 0;
+    border-radius: 10px 10px 0 0;
+    /* Bordes redondeados solo arriba */
+    text-align: right;
+    /* Alinear el logo a la derecha */
+    margin: -2rem -2rem 2rem -2rem;
+    /* Extender el header fuera del padding */
+    overflow: hidden;
+    /* Evitar que la imagen se desborde */
+}
+
+.auth-box header img.logo {
+    width: 50%;
+    /* La imagen ocupa la mitad del ancho del header */
+    height: auto;
+    display: block;
+    /* Eliminar espacio inferior */
+    border-radius: 10px 10px 0 0;
+    /* Bordes redondeados solo arriba */
+    margin-left: auto;
+    /* Alinear la imagen a la derecha */
+    margin-right: 0;
+    /* Eliminar margen derecho */
+}
+
+.btn-success {
+    background-color: #28a745;
+    /* Color verde */
+    border: none;
+    transition: background-color 0.3s ease;
+    color: #ffffff;
+    /* Texto blanco */
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    /* Color verde más oscuro al pasar el mouse */
+}
+
+.text-decoration-underline {
+    text-decoration: underline;
+}
+
+/**HOME**/
+
+.navbar-custom {
+    /* background: linear-gradient(135deg, #00826F, #00826F); */
+    background: linear-gradient(135deg, #00826F, #005e50);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: white !important;
+}
+
+.navbar-custom .nav-link:hover {
+    color: #FFD700 !important;
+}
+
+.navbar-custom .navbar-toggler {
+    border-color: white;
+}
+
+
+.btn-logout {
+    background-color: #dc3545;
+    /* Rojo para el botón de cerrar sesión */
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.btn-logout:hover {
+    background-color: #c82333;
+    /* Rojo más oscuro al hacer hover */
+}
+
+.logo-custom {
+    border-radius: 50%;
+    /* Redondea la imagen */
+    width: 50px;
+    /* Ancho de la imagen */
+    height: 50px;
+    /* Alto de la imagen */
+    object-fit: cover;
+    /* Asegura que la imagen cubra el área sin distorsionarse */
+}
+
+/*Menu home*/
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease;
+    z-index: 1000;
+    /* Asegura que el sidebar esté por encima de otros elementos */
+}
+
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.sidebar.collapsed .menu-text {
+    display: none;
+}
+
+.sidebar.collapsed .user-info .name,
+.sidebar.collapsed .user-info .role {
+    display: none;
+}
+
+.sidebar.collapsed:hover {
+    width: 250px;
+}
+
+.sidebar.collapsed:hover .menu-text {
+    display: inline;
+}
+
+.sidebar.collapsed:hover .user-info .name,
+.sidebar.collapsed:hover .user-info .role {
+    display: block;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar a:hover {
+    background-color: #ddd;
+}
+
+.sidebar a i {
+    margin-right: 10px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.main-content.collapsed {
+    margin-left: 60px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.user-info .name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.user-info .role {
+    font-size: 14px;
+    color: #666;
+}
+
+.toggle-btn {
+    position: fixed;
+    /* Cambiado a fixed para que esté siempre visible */
+    top: 20px;
+    left: 250px;
+    /* Posición inicial al lado del sidebar */
+    background-color: #f8f9fa;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    /* Asegura que el botón esté por encima del sidebar */
+    transition: left 0.3s ease;
+    /* Transición suave al colapsar/expandir */
+}
+
+.sidebar.collapsed+.toggle-btn {
+    left: 60px;
+    /* Posición cuando el sidebar está colapsado */
+}
+
+.toggle-btn i {
+    font-size: 20px;
+}
+
+/*header*/
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+    /* Evita el desbordamiento horizontal */
+}
+
+.header {
+    position: relative;
+    height: 400px;
+    /* Aumenté la altura */
+    background: linear-gradient(135deg, #00826F, #005e50);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.header-wave {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.header h6 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.header h2 {
+    font-size: 3.5rem;
+    /* Tamaño más grande para el nombre */
+    margin: 10px 0;
+}
+
+.icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.icon-box i {
+    font-size: 1.5rem;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 500 150" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: white;"></path></svg>');
+    background-size: cover;
+}
+
+
+/* Sección de Información */
+.info-section {
+    background: #f4f4f4;
+    padding: 20px;
+    text-align: left;
+    /* Alineación a la izquierda */
+}
+
+.info-section h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.info-section p {
+    margin: 10px 0 0;
+    color: #666;
+}
+
+.info-section .home-link {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #333;
+    text-decoration: none;
+}
+
+.info-section .home-link i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+/*CARS*/
+/* Estilos para el menú lateral */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa;
+    padding-top: 60px;
+    /* Ajuste para el navbar */
+    z-index: 1000;
+}
+
+/* Estilos para el contenido principal */
+.main-content {
+    margin-left: 250px;
+    /* Igual al ancho del menú lateral */
+    padding-top: 60px;
+    /* Ajuste para el navbar */
+}
+
+/* Estilos para el navbar */
+.navbar-custom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+    /* Asegura que el navbar esté por encima del menú lateral */
+}
+
+/* Estilos para las tarjetas */
+.custom-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    height: 200px;
+    /* Tamaño fijo */
+    margin: 10px;
+    /* Espaciado entre rectángulos */
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #666;
+}
+
+.icon-large {
+    color: #007bff;
+    /* Color del icono */
+}
+
+/*modal perfil*/
+/* Contenedor de la imagen cuadrada */
+.square-image-container {
+    width: 100%;
+    /* Ocupa todo el ancho de la columna */
+    aspect-ratio: 1 / 1;
+    /* Hace que el contenedor sea un cuadrado */
+    overflow: hidden;
+    /* Recorta la imagen si es necesario */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    /* Color de fondo opcional */
+    border-radius: 8px;
+    /* Bordes redondeados */
+}
+
+/* Estilos para la imagen dentro del contenedor */
+.square-image {
+    width: 100%;
+    /* Ocupa todo el ancho del contenedor */
+    height: 100%;
+    /* Ocupa todo el alto del contenedor */
+    object-fit: cover;
+    /* Asegura que la imagen cubra el contenedor sin distorsionarse */
+}
+
+.modal-header {
+    background-color: #00826F;
+    color: white;
+}s
+
+.btn-select-doctor {
+    margin: 10px;
+    padding: 5px 150px 5px 150px;
+    font-size: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    color: black;
+    border: 1px solid;
+}
+
+
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    margin-top: 80px;
+    /* Añadido para reemplazar los <br> */
+}
+
+/* Estilos adicionales para los botones azules */
+.btn-urgencia,
+.btn-bloqueos {
+    background-color: #007bff;
+    /* Color azul */
+    border-color: #007bff;
+}
+
+.btn-urgencia:hover,
+.btn-bloqueos:hover {
+    background-color: #0056b3;
+    /* Color azul más oscuro al pasar el ratón */
+    border-color: #0056b3;
+}
+
+.fc-time-grid .fc-slats .fc-minor {
+    font-weight: normal;
+    color: #666;
+}
+
+.fc-time-grid .fc-slats .fc-major {
+    font-weight: bold;
+    color: black;
+}
+
+.container-xl {
+    position: relative;
+    min-height: 100vh;
+    /* Ajusta según sea necesario */
+}
+
+.calendar-responsive {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .calendar-responsive {
+        width: 85%;
+    }
+}
+
+@media (min-width: 992px) {
+    .calendar-responsive {
+        width: 70%;
+    }
+}
+
+.main-content {
+    margin-left: 250px; /* Ancho del menú lateral */
+    margin-top: 60px; /* Altura del navbar */
+    padding: 20px; /* Espaciado interno */
+    transition: margin-left 0.3s ease; /* Transición suave si el menú se colapsa */
+}
+
+
+#submenuPrimeraVisita, #submenuNuevaAlta {
+    background-color: #D9B596; /* Beige claro */
+    padding: 15px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+}
