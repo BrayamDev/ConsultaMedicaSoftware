@@ -213,15 +213,6 @@
     margin-right: 10px;
 }
 
-.main-content {
-    margin-left: 250px;
-    padding: 20px;
-    transition: margin-left 0.3s ease;
-}
-
-.main-content.collapsed {
-    margin-left: 60px;
-}
 
 .user-info {
     display: flex;
@@ -387,13 +378,7 @@ body {
     z-index: 1000;
 }
 
-/* Estilos para el contenido principal */
-.main-content {
-    margin-left: 250px;
-    /* Igual al ancho del menú lateral */
-    padding-top: 60px;
-    /* Ajuste para el navbar */
-}
+
 
 /* Estilos para el navbar */
 .navbar-custom {
@@ -469,7 +454,7 @@ body {
 .modal-header {
     background-color: #00826F;
     color: white;
-}s
+}
 
 .btn-select-doctor {
     margin: 10px;
@@ -542,7 +527,7 @@ body {
 }
 
 .main-content {
-    margin-left: 250px; /* Ancho del menú lateral */
+
     margin-top: 60px; /* Altura del navbar */
     padding: 20px; /* Espaciado interno */
     transition: margin-left 0.3s ease; /* Transición suave si el menú se colapsa */
@@ -553,4 +538,10 @@ body {
     background-color: #D9B596; /* Beige claro */
     padding: 15px; /* Espaciado interno */
     border-radius: 10px; /* Bordes redondeados */
+}
+
+.brand-name {
+    font-size: 1.5rem; /* Tamaño del texto */
+    font-weight: bold; /* Negrita */
+    color: #ffffff; /* Color del texto */
 }

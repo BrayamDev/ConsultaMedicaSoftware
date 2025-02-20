@@ -17,8 +17,9 @@
     <nav class="navbar navbar-expand-lg navbar-custom fixed-top p-2">
         <div class="container-fluid">
             <!-- Logo o nombre de la marca (izquierda) -->
-            <a class="navbar-brand" href="#">
-                <img src="../imagenes/logo.png" alt="imagen del logo" class="logo-custom">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="../imagenes/logo.png" alt="imagen del logo" class="logo-custom me-2"> <!-- Logo -->
+                <span class="brand-name">Junior Rodriguez castañeda</span> <!-- Nombre de la marca -->
             </a>
 
             <!-- Botón para colapsar el menú en dispositivos móviles -->
@@ -30,6 +31,13 @@
             <!-- Contenedor para los botones (derecha) -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
+
+                    <!-- Botón de home -->
+                    <li class="nav-item me-3">
+                        <a class="btn btn-light position-relative" href="../home/home.php">
+                            <i class="ri-home-2-line"></i>
+                        </a>
+                    </li>
                     <!-- Botón de Notificaciones -->
                     <li class="nav-item me-3">
                         <button class="btn btn-light position-relative" onclick="mostrarNotificaciones()">

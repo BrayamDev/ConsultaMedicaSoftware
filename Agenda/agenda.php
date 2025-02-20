@@ -29,7 +29,8 @@ include_once "../global/conexion.php";
 
 <body>
     <?php include_once "../global/navbar.php" ?>
-    <?php include_once "../global/menu.php" ?>
+    <?php // include_once "../global/menu.php" 
+    ?>
     <br>
     <div class="main-content">
         <div class="container-fluid text-end">
@@ -62,7 +63,6 @@ include_once "../global/conexion.php";
                             </div>
                         </div>
                     </div>
-
                 </div>
 
 
@@ -102,10 +102,6 @@ include_once "../global/conexion.php";
                                         <i class="ri-calendar-event-line"></i> Fecha y Hora
                                     </label>
                                     <input type="datetime-local" class="form-control" id="fechaHora">
-                                    <div class="form-check mt-2">
-                                        <input class="form-check-input" type="checkbox" id="citaFueraHorario">
-                                        <label class="form-check-label" for="citaFueraHorario">Cita fuera de horario</label>
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="especialidad" class="form-label">
@@ -133,7 +129,7 @@ include_once "../global/conexion.php";
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="paciente" placeholder="Buscar paciente">
                                         <button class="btn btn-success text-dark" type="button" data-bs-toggle="modal" data-bs-target="#modalBuscarPaciente">
-                                            <i class="ri-search-line"></i> Buscar
+                                            <i class="ri-search-line"></i>
                                         </button>
                                         <button class="btn btn-info text-dark" type="button" data-bs-toggle="modal" data-bs-target="#modalResumenUsuario">
                                             <i class="ri-user-line"></i>
@@ -276,7 +272,7 @@ include_once "../global/conexion.php";
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="primeraVisita">
                                         <label class="form-check-label" for="primeraVisita">
-                                            <i class="ri-checkbox-circle-line"></i> Primera visita
+                                            <i class="ri-checkbox-circle-line"></i> Registro Visita
                                         </label>
                                     </div>
                                 </div>
@@ -284,7 +280,7 @@ include_once "../global/conexion.php";
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="nuevaAlta">
                                         <label class="form-check-label" for="nuevaAlta">
-                                            <i class="ri-checkbox-circle-line"></i> Nueva alta
+                                            <i class="ri-checkbox-circle-line"></i>Registrar Nueva alta
                                         </label>
                                     </div>
                                 </div>
@@ -405,7 +401,7 @@ include_once "../global/conexion.php";
                                     </div>
                                     <div class="col-md-4">
                                         <label for="paisAlta" class="form-label">
-                                            <i class="ri-map-pin-line"></i> País
+                                            <i class="ri-map-pin-line"></i> País de origen
                                         </label>
                                         <input type="text" class="form-control" id="paisAlta" value="España">
                                     </div>
@@ -446,23 +442,17 @@ include_once "../global/conexion.php";
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <label for="numeroDocumentoAlta" class="form-label">
                                             <i class="ri-id-card-line"></i> Número de documento
                                         </label>
                                         <input type="text" class="form-control" id="numeroDocumentoAlta">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <label for="direccionAlta" class="form-label">
                                             <i class="ri-map-pin-line"></i> Dirección
                                         </label>
                                         <input type="text" class="form-control" id="direccionAlta">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="segundaDireccionAlta" class="form-label">
-                                            <i class="ri-map-pin-line"></i> Segunda dirección
-                                        </label>
-                                        <input type="text" class="form-control" id="segundaDireccionAlta">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -483,14 +473,6 @@ include_once "../global/conexion.php";
                                             <i class="ri-smartphone-line"></i> Móvil
                                         </label>
                                         <input type="text" class="form-control" id="movilAlta">
-                                        <div class="form-check mt-2">
-                                            <input class="form-check-input" type="checkbox" id="avisosSMS">
-                                            <label class="form-check-label" for="avisosSMS">Avisos SMS</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="publicidadSMS">
-                                            <label class="form-check-label" for="publicidadSMS">Publicidad SMS</label>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -506,43 +488,18 @@ include_once "../global/conexion.php";
                                     </div>
                                     <div class="col-md-4">
                                         <label for="procedenciaAlta" class="form-label">
-                                            <i class="ri-map-pin-line"></i> Procedencia
+                                            <label for="tarifasMutuasAlta" class="form-label">
+                                                <i class="ri-map-pin-line"></i>Procedencia
+                                            </label>
+                                            <input type="text" class="form-control" id="procedencia" placeholder="Procedencia">
                                         </label>
-                                        <select class="form-select" id="procedenciaAlta">
-                                            <option selected>Seleccione una procedencia</option>
-                                            <option>Procedencia 1</option>
-                                            <option>Procedencia 2</option>
-                                            <option>Procedencia 3</option>
-                                        </select>
+
                                     </div>
                                     <div class="col-md-4">
                                         <label for="tarifasMutuasAlta" class="form-label">
-                                            <i class="ri-money-dollar-circle-line"></i> Tarifas/mutuas
+                                            <i class="ri-money-dollar-circle-line"></i> Aseguradora
                                         </label>
-                                        <input type="text" class="form-control" id="tarifasMutuasAlta" placeholder="Busca tarifa/mutua">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-4">
-                                        <label for="formaPagoAlta" class="form-label">
-                                            <i class="ri-money-dollar-circle-line"></i> Forma de pago
-                                        </label>
-                                        <select class="form-select" id="formaPagoAlta">
-                                            <option selected>Seleccione una forma de pago</option>
-                                            <option>Efectivo</option>
-                                            <option>Tarjeta</option>
-                                            <option>Transferencia</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-check mt-4">
-                                            <input class="form-check-input" type="checkbox" id="generarFacturasAlta">
-                                            <label class="form-check-label" for="generarFacturasAlta">Generar facturas</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="lopdAlta">
-                                            <label class="form-check-label" for="lopdAlta">LOPD</label>
-                                        </div>
+                                        <input type="text" class="form-control" id="tarifasMutuasAlta" placeholder="Aseguradora">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -558,49 +515,10 @@ include_once "../global/conexion.php";
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="alertarObservaciones">
                                             <label class="form-check-label" for="alertarObservaciones">
-                                                <i class="ri-alert-line"></i> Alertar de las observaciones del paciente
+                                                <i class="ri-alert-line"></i> Mostrar observaciones del paciente
                                             </label>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <label for="otrosDatosAlta" class="form-label">
-                                            <i class="ri-file-text-line"></i> Otros datos
-                                        </label>
-                                        <textarea class="form-control" id="otrosDatosAlta" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="portalPacienteAlta">
-                                            <label class="form-check-label" for="portalPacienteAlta">
-                                                <i class="ri-user-line"></i> Portal del Paciente
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Particulares y Tar/Mút en la misma fila -->
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="particulares" class="form-label">
-                                        <i class="ri-user-settings-line"></i> Particulares
-                                    </label>
-                                    <input type="text" class="form-control" id="particulares">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="tarMutu" class="form-label">
-                                        <i class="ri-money-dollar-circle-line"></i> Tar/Mút.
-                                    </label>
-                                    <select class="form-select" id="tarMutu">
-                                        <option selected>Seleccione una opción</option>
-                                        <option>Tarifa 1</option>
-                                        <option>Tarifa 2</option>
-                                        <option>Tarifa 3</option>
-                                    </select>
                                 </div>
                             </div>
 
@@ -618,23 +536,7 @@ include_once "../global/conexion.php";
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="destaca">
                                         <label class="form-check-label" for="destaca">
-                                            <i class="ri-star-line"></i> Destaca
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="citaMultiple">
-                                        <label class="form-check-label" for="citaMultiple">
-                                            <i class="ri-group-line"></i> Cita múltiple profesional
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="multiple">
-                                        <label class="form-check-label" for="multiple">
-                                            <i class="ri-list-check"></i> Múltiple
+                                            <i class="ri-star-line"></i> Mostrar Observaciones
                                         </label>
                                     </div>
                                 </div>
@@ -642,23 +544,44 @@ include_once "../global/conexion.php";
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-success" style="background-color: #00826F; border: none;">Guardar</button>
-                        <button type="button" class="btn btn-success" style="background-color: #00826F; border: none;">Guardar e imprimir</button>
+                        <!-- Botón Cerrar con icono -->
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="ri-close-line"></i> <!-- Icono de cerrar -->
+                        </button>
+
+                        <!-- Botón Guardar con icono -->
+                        <button type="button" class="btn btn-success" style="background-color: #00826F; border: none;">
+                            <i class="ri-save-line"></i> <!-- Icono de guardar -->
+                        </button>
+
+                        <!-- Botón Guardar e imprimir con icono -->
+                        <button type="button" class="btn btn-success" style="background-color: #00826F; border: none;">
+                            <i class="ri-printer-line"></i> <!-- Icono de imprimir -->
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Contenedor del calendario -->
-        <div class="container-fluid d-flex flex-column align-items-end">
-            <div id="calendar" class="mt-4 calendar-responsive" style="width: 100%;"></div>
+        <div>
+            <div id="calendar"></div>
         </div>
     </div>
 
     <script>
         $(document).ready(function() {
             $.getScript('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/es.js', function() {
+                // Definir nombres de meses con la primera letra en mayúscula
+                const monthNames = [
+                    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+                ];
+                const monthNamesShort = [
+                    'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
+                    'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
+                ];
+
                 // Inicializar el calendario principal
                 $('#calendar').fullCalendar({
                     header: {
@@ -666,15 +589,19 @@ include_once "../global/conexion.php";
                         center: 'title',
                         right: 'month,agendaWeek,agendaDay,agendaMulti'
                     },
-                    defaultView: 'agendaDay',
+                    defaultView: 'month', // Vista por defecto: mes
                     defaultDate: new Date(),
                     editable: true,
                     events: 'php/get_events.php',
                     locale: 'es',
-                    slotLabelFormat: 'HH:mm',
-                    slotDuration: '01:00:00', // Cambiado a 1 hora
-                    slotLabelInterval: '01:00:00', // Cambiado a 1 hora
+                    monthNames: monthNames, // Nombres de meses completos
+                    monthNamesShort: monthNamesShort, // Nombres de meses abreviados
+                    slotLabelFormat: 'h:mm A', // Formato de 12 horas
+                    slotDuration: '01:00:00', // Intervalo de 1 hora
+                    slotLabelInterval: '01:00:00', // Intervalo de 1 hora
+                    allDaySlot: false, // Eliminar la sección "Todo el día"
                     contentHeight: 'auto',
+                    timeFormat: 'h:mm A', // Formato de 12 horas
                     views: {
                         agendaMulti: {
                             type: 'agenda',
@@ -683,6 +610,11 @@ include_once "../global/conexion.php";
                             },
                             buttonText: 'Multi',
                         }
+                    },
+                    eventRender: function(event, element) {
+                        // Capitalizar la primera letra del título del evento
+                        event.title = event.title.charAt(0).toUpperCase() + event.title.slice(1);
+                        element.find('.fc-title').text(event.title);
                     },
                     eventClick: function(event) {
                         alert('Evento: ' + event.title);
@@ -695,6 +627,8 @@ include_once "../global/conexion.php";
                     defaultView: 'month', // Vista de mes
                     defaultDate: new Date(),
                     locale: 'es',
+                    monthNames: monthNames, // Nombres de meses completos
+                    monthNamesShort: monthNamesShort, // Nombres de meses abreviados
                     height: 'auto',
                     fixedWeekCount: false, // No mostrar semanas adicionales
                     dayClick: function(date, jsEvent, view) {
@@ -705,7 +639,6 @@ include_once "../global/conexion.php";
                 });
             });
         });
-
 
         document.getElementById('nuevaAlta').addEventListener('change', function() {
             var submenuAlta = document.getElementById('submenuNuevaAlta');
@@ -743,6 +676,7 @@ include_once "../global/conexion.php";
             });
         });
     </script>
+
 
     <script src="Js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

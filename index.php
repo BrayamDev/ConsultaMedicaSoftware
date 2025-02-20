@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.css">
     <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.js"></script>
     <!-- Css -->
-    <link rel="stylesheet" href="css/estilos.css"> 
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
 
 <body class="login-bg">
@@ -52,40 +52,40 @@
         </div>
     </div>
     <script>
-    <?php if (isset($_GET['success'])) { ?>
-        Notiflix.Notify.init({
-            position: 'right-top',
-            timeout: 4000,
-            width: '500px',
-            fontSize: '20px', 
-            borderRadius: '12px',
-            cssAnimationStyle: 'zoom', 
-            success: {
-                background: '#008000', // Color de fondo para éxito
-                textColor: '#FFFFFF', // Color del texto
-            },
-        });
+        <?php if (isset($_GET['success'])) { ?>
+            Notiflix.Notify.init({
+                position: 'right-top',
+                timeout: 4000,
+                width: '500px',
+                fontSize: '20px',
+                borderRadius: '12px',
+                cssAnimationStyle: 'zoom',
+                success: {
+                    background: '#008000', // Color de fondo para éxito
+                    textColor: '#FFFFFF', // Color del texto
+                },
+            });
 
-        Notiflix.Notify.success('<?php echo $_GET['success']; ?>');
-    <?php } ?>
+            Notiflix.Notify.success('<?php echo $_GET['success']; ?>');
+        <?php } ?>
 
-    <?php if (isset($_GET['error'])) { ?>
-        Notiflix.Notify.init({
-            position: 'right-top',
-            timeout: 4000,
-            width: '500px', 
-            fontSize: '20px', 
-            borderRadius: '12px',
-            cssAnimationStyle: 'zoom',
-            failure: {
-                background: '#ab2e46', // Color de fondo para error
-                textColor: '#FFFFFF', // Color del texto
-            },
-        });
+        <?php if (isset($_GET['error'])) { ?>
+            Notiflix.Notify.init({
+                position: 'right-top',
+                timeout: 4000,
+                width: '500px',
+                fontSize: '20px',
+                borderRadius: '12px',
+                cssAnimationStyle: 'zoom',
+                failure: {
+                    background: '#ab2e46', // Color de fondo para error
+                    textColor: '#FFFFFF', // Color del texto
+                },
+            });
 
-        Notiflix.Notify.failure('<?php echo $_GET['error']; ?>');
-    <?php } ?>
-</script>
+            Notiflix.Notify.failure('<?php echo $_GET['error']; ?>');
+        <?php } ?>
+    </script>
 </body>
 
 </html>

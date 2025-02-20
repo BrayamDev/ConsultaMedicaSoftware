@@ -26,7 +26,7 @@ if (!isset($_SESSION['nombre_user'])) {
 
 <body>
     <?php include_once "../global/navbar.php" ?>
-    <?php include_once "../global/menu.php" ?>
+    <?php // include_once "../global/menu.php" ?>
 
     <!-- Sección de Información -->
     <div class="info-section">
@@ -56,7 +56,7 @@ if (!isset($_SESSION['nombre_user'])) {
         </div>
     </div>
 
-    <div class="main-content">
+    <!-- <di class="main-content">-->
         <div class="container-fluid">
             <div class="row">
                 <!-- Rectángulo 1: Servicios Asistenciales -->
@@ -67,14 +67,12 @@ if (!isset($_SESSION['nombre_user'])) {
                                 <i class="ri-heart-pulse-line fs-1"></i> <!-- Icono grande -->
                             </div>
                             <div>
-                                <h5 class="card-title">Servicios Asistenciales - Listado</h5>
+                                <a class="card-title" href="../Agenda/agenda.php">Servicios Asistenciales - Listado</a>
                                 <p class="card-text">Información sobre los servicios asistenciales ofrecidos.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-
-               
 
                 <!-- Rectángulo 2: Desglose Atenciones Diarias -->
                 <div class="col-md-4 p-0">
@@ -91,7 +89,7 @@ if (!isset($_SESSION['nombre_user'])) {
                     </div>
                 </div>
 
-               
+
                 <!-- Rectángulo 3: Facturación -->
                 <div class="col-md-4 p-0">
                     <div class="card custom-card h-100">
@@ -110,24 +108,23 @@ if (!isset($_SESSION['nombre_user'])) {
                 <p>
                 </p>
 
-                   <!-- Rectángulo 4: Gestión Pacientes -->
-                   <div class="col-md-4 p-0">
+                <!-- Rectángulo 4: Gestión Pacientes -->
+                <div class="col-md-4 p-0">
                     <div class="card custom-card h-100">
                         <div class="card-body d-flex align-items-center">
                             <div class="icon-large me-4">
-                                <i class="ri-calendar-check-line fs-1 text-success"></i> <!-- Icono grande -->
+                                <i class="ri-user-heart-line fs-1 text-success"></i> <!-- Icono grande -->
                             </div>
                             <div>
-                                <h5 class="card-title ">Gestión Pacientes</h5>
+                                <a class="card-title" href="../Pacientes/paciente.php">Gestión Pacientes</a>
                                 <p class="card-text">Resumen de las atenciones realizadas en el día.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-               
-                   <!-- Rectángulo 5: Gestión Profesionales-->
-                   <div class="col-md-4 p-0">
+                <!-- Rectángulo 5: Gestión Profesionales-->
+                <div class="col-md-4 p-0">
                     <div class="card custom-card h-100">
                         <div class="card-body d-flex align-items-center">
                             <div class="icon-large me-4">
@@ -141,10 +138,10 @@ if (!isset($_SESSION['nombre_user'])) {
                     </div>
                 </div>
 
-              
 
-                   <!-- Rectángulo 6: Medicamentos y procedimientos -->
-                   <div class="col-md-4 p-0">
+
+                <!-- Rectángulo 6: Medicamentos y procedimientos -->
+                <div class="col-md-4 p-0">
                     <div class="card custom-card h-100">
                         <div class="card-body d-flex align-items-center">
                             <div class="icon-large me-4">
@@ -159,9 +156,9 @@ if (!isset($_SESSION['nombre_user'])) {
                 </div>
                 <p>
                 </p>
-             
-                   <!-- Rectángulo 7: Estadísticas -->
-                   <div class="col-md-4 p-0">
+
+                <!-- Rectángulo 7: Estadísticas -->
+                <div class="col-md-4 p-0">
                     <div class="card custom-card h-100">
                         <div class="card-body d-flex align-items-center">
                             <div class="icon-large me-4">
@@ -175,10 +172,10 @@ if (!isset($_SESSION['nombre_user'])) {
                     </div>
                 </div>
 
-          
 
-                   <!-- Rectángulo 8:Plantillas -->
-                   <div class="col-md-4 p-0">
+
+                <!-- Rectángulo 8:Plantillas -->
+                <div class="col-md-4 p-0">
                     <div class="card custom-card h-100">
                         <div class="card-body d-flex align-items-center">
                             <div class="icon-large me-4">
@@ -193,8 +190,8 @@ if (!isset($_SESSION['nombre_user'])) {
                 </div>
             </div>
         </div>
-    </div>
-   
+    <!-- </div>-->
+
     <script src="../Js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
