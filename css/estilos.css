@@ -545,3 +545,72 @@ body {
     font-weight: bold; /* Negrita */
     color: #ffffff; /* Color del texto */
 }
+
+/*tabla pacientes*/
+
+/* Estilos personalizados para la tabla */
+.tabulator {
+    font-family: 'Arial', sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Encabezados de la tabla */
+.tabulator .tabulator-header {
+    background-color: #00826F; /* Color principal */
+    color: #ffffff; /* Texto blanco */
+    font-weight: bold;
+}
+
+.tabulator .tabulator-header .tabulator-col {
+    border-right: 1px solid #ffffff; /* Líneas divisorias blancas */
+}
+
+/* Filas de la tabla */
+.tabulator .tabulator-tableHolder .tabulator-table {
+    background-color: #f8f9fa; /* Fondo gris claro */
+}
+
+.tabulator .tabulator-row {
+    border-bottom: 1px solid #ddd; /* Líneas divisorias grises */
+}
+
+.tabulator .tabulator-row:nth-child(even) {
+    background-color: #e0f2f1; /* Fondo verde claro para filas pares */
+}
+
+.tabulator .tabulator-row:hover {
+    background-color: #b2dfdb; /* Fondo verde más claro al pasar el mouse */
+}
+
+/* Paginación */
+.tabulator .tabulator-footer {
+    background-color: #00826F; /* Color principal */
+    color: #ffffff; /* Texto blanco */
+}
+
+.tabulator .tabulator-page {
+    color: #ffffff; /* Texto blanco */
+}
+
+.tabulator .tabulator-page.active {
+    background-color: #ffffff; /* Fondo blanco para la página activa */
+    color: #00826F; /* Texto en color principal */
+    border-radius: 4px;
+}
+
+/* Campo de búsqueda */
+#buscador-global {
+    border: 1px solid #00826F;
+    border-radius: 4px;
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+#buscador-global:focus {
+    outline: none;
+    border-color: #00695c; /* Color más oscuro al enfocar */
+    box-shadow: 0 0 0 2px rgba(0, 130, 111, 0.2); /* Sombra suave */
+}

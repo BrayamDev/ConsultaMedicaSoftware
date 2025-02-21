@@ -1,6 +1,4 @@
-<?php
-include_once "../global/conexion.php";
-?>
+<?php include_once "../global/conexion.php"; ?>
 
 <!DOCTYPE html>
 <html lang="es">
