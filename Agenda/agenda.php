@@ -562,7 +562,7 @@
         </div>
 
         <!-- Contenedor del calendario -->
-        <div>
+        <div >
             <div id="calendar"></div>
         </div>
     </div>
