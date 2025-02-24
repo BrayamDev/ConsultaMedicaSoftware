@@ -23,6 +23,9 @@
     <!-- bootstrap css and js -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!--banderas-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 </head>
 
 <body>
@@ -38,7 +41,9 @@
                     <div class="d-flex gap-2 justify-content-start">
                         <!-- Dropdown para "Seleccione el doctor" -->
                         <div class="dropdown">
-                            <button class="btn btn-success btn-sm dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00826F; border: none;">
+                            <button class="btn btn-success dropdown-toggle text-white" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false"
+                                style="background-color: #00826F; border: none;">
                                 Seleccione el doctor
                             </button>
                             <ul class="dropdown-menu">
@@ -47,15 +52,19 @@
                                 <li><a class="dropdown-item" href="#">Doctor 3</a></li>
                             </ul>
                         </div>
-                        <a class="btn btn-success btn-sm text-white" style="background-color: #00826F; border: none;"> <!-- Ajusta el ancho según necesites -->
+                        <a class="btn btn-success text-white" style="background-color: #00826F; border: none;">
+                            <!-- Ajusta el ancho según necesites -->
                             <i class="ri-user-heart-line"></i> Ver ficha
                         </a>
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn-sm dropdown-toggle text-white" type="button" id="miniCalendarDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #00826F; border: none;">
+                                <button class=" btn btn-success dropdown-toggle text-white" type="button"
+                                    id="miniCalendarDropdown" data-bs-toggle="dropdown" aria-expanded="false"
+                                    style="background-color: #00826F; border: none;">
                                     <i class="ri-calendar-2-line"></i> Calendario
                                 </button>
-                                <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="miniCalendarDropdown" style="width: 300px;">
+                                <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="miniCalendarDropdown"
+                                    style="width: 300px;">
                                     <div id="miniCalendar"></div>
                                 </div>
                             </div>
@@ -66,13 +75,14 @@
 
                 <!-- Botón para abrir el modal -->
                 <div class="col-md-6">
-                    <div class="row justify-content-end">
+                    <div class="row justify-content-center">
                         <div class="col-md-12">
                             <div class="d-flex gap-2 justify-content-end">
-                                <button class="btn btn-success btn-sm" style="background-color: #00826F; border: none;" data-bs-toggle="modal" data-bs-target="#nuevaCitaModal">
+                                <button class="btn btn-success " style="background-color: #00826F; border: none;"
+                                    data-bs-toggle="modal" data-bs-target="#nuevaCitaModal">
                                     <i class="ri-calendar-line"></i> Nueva cita
                                 </button>
-                                <button class="btn btn-success btn-sm" style="background-color: #00826F; border: none;">
+                                <button class="btn btn-success" style="background-color: #00826F; border: none;">
                                     <i class="ri-user-line"></i> Citas paciente
                                 </button>
                             </div>
@@ -82,7 +92,8 @@
             </div>
         </div>
         <!-- Modal de Nueva Cita -->
-        <div class="modal fade" id="nuevaCitaModal" tabindex="-1" aria-labelledby="nuevaCitaModalLabel" aria-hidden="true">
+        <div class="modal fade" id="nuevaCitaModal" tabindex="-1" aria-labelledby="nuevaCitaModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -103,7 +114,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="especialidad" class="form-label">
-                                        <i class="ri-stethoscope-line"></i> Especialidades <span class="text-danger">*</span>
+                                        <i class="ri-stethoscope-line"></i> Especialidades <span
+                                            class="text-danger">*</span>
                                     </label>
                                     <select class="form-select" id="especialidad">
                                         <option selected>Medicina General</option>
@@ -116,7 +128,8 @@
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="tiempoVisita" class="form-label">
-                                        <i class="ri-time-line"></i> Tiempo visita (min) <span class="text-danger">*</span>
+                                        <i class="ri-time-line"></i> Tiempo visita (min) <span
+                                            class="text-danger">*</span>
                                     </label>
                                     <input type="number" class="form-control" id="tiempoVisita" value="30">
                                 </div>
@@ -125,23 +138,30 @@
                                         <i class="ri-user-line"></i> Paciente <span class="text-danger">*</span>
                                     </label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="paciente" placeholder="Buscar paciente">
-                                        <button class="btn btn-success text-dark" type="button" data-bs-toggle="modal" data-bs-target="#modalBuscarPaciente">
+                                        <input type="text" class="form-control" id="paciente"
+                                            placeholder="Buscar paciente">
+                                        <button class="btn btn-success text-dark" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#modalBuscarPaciente">
                                             <i class="ri-search-line"></i>
                                         </button>
-                                        <button class="btn btn-info text-dark" type="button" data-bs-toggle="modal" data-bs-target="#modalResumenUsuario">
+                                        <button class="btn btn-info text-dark" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#modalResumenUsuario">
                                             <i class="ri-user-line"></i>
                                         </button>
                                     </div>
                                 </div>
 
                                 <!-- Modal para el resumen del usuario -->
-                                <div class="modal fade" id="modalResumenUsuario" tabindex="-1" aria-labelledby="modalResumenUsuarioLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg modal-dialog-centered"> <!-- Se hace más grande y se centra -->
+                                <div class="modal fade" id="modalResumenUsuario" tabindex="-1"
+                                    aria-labelledby="modalResumenUsuarioLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <!-- Se hace más grande y se centra -->
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="modalResumenUsuarioLabel">Resumen del Usuario</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <h5 class="modal-title" id="modalResumenUsuarioLabel">Resumen del
+                                                    Usuario</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <!-- Contenido del resumen del usuario -->
@@ -157,11 +177,14 @@
                                                 <button type="button" class="btn btn-warning">
                                                     <i class="ri-file-list-line"></i> Documentos del paciente
                                                 </button>
-                                                <button type="button" class="btn btn-secondary" id="cerrarModalResumen">Cerrar</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    id="cerrarModalResumen">Cerrar</button>
                                                 <script>
-                                                    document.getElementById("cerrarModalResumen").addEventListener("click", function() {
+                                                document.getElementById("cerrarModalResumen").addEventListener("click",
+                                                    function() {
                                                         var modal = document.getElementById("modalResumenUsuario");
-                                                        var modalInstance = bootstrap.Modal.getInstance(modal); // Obtiene la instancia activa del modal
+                                                        var modalInstance = bootstrap.Modal.getInstance(
+                                                            modal); // Obtiene la instancia activa del modal
                                                         if (modalInstance) {
                                                             modalInstance.hide(); // Cierra solo este modal
                                                         }
@@ -173,29 +196,37 @@
                                 </div>
 
                                 <!-- Modal de búsqueda de paciente -->
-                                <div class="modal fade" id="modalBuscarPaciente" tabindex="-1" aria-labelledby="modalBuscarPacienteLabel" aria-hidden="true">
+                                <div class="modal fade" id="modalBuscarPaciente" tabindex="-1"
+                                    aria-labelledby="modalBuscarPacienteLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-fullscreen">
-                                        <div class="modal-content" style="margin: 20px; height: calc(100vh - 40px); max-width: 1200px; margin-left: auto; margin-right: auto;">
+                                        <div class="modal-content"
+                                            style="margin: 20px; height: calc(100vh - 40px); max-width: 1200px; margin-left: auto; margin-right: auto;">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="modalBuscarPacienteLabel">
                                                     <i class="ri-search-line"></i> Buscar Paciente
                                                 </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body" style="overflow-y: auto;">
                                                 <!-- Campo de búsqueda y checkboxes -->
                                                 <div class="row mb-3">
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" id="buscarPacienteInput" placeholder="Buscar paciente...">
+                                                        <input type="text" class="form-control" id="buscarPacienteInput"
+                                                            placeholder="Buscar paciente...">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="checkComienzaPorTexto">
-                                                            <label class="form-check-label" for="checkComienzaPorTexto">Comienza por texto</label>
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="checkComienzaPorTexto">
+                                                            <label class="form-check-label"
+                                                                for="checkComienzaPorTexto">Comienza por texto</label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="checkContieneTexto">
-                                                            <label class="form-check-label" for="checkContieneTexto">Contiene texto</label>
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="checkContieneTexto">
+                                                            <label class="form-check-label"
+                                                                for="checkContieneTexto">Contiene texto</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -237,10 +268,14 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" id="cerrarModalBuscarPaciente">Cerrar</button>
-                                                <button type="button" class="btn btn-success" id="seleccionarPaciente">Seleccionar</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    id="cerrarModalBuscarPaciente">Cerrar</button>
+                                                <button type="button" class="btn btn-success"
+                                                    id="seleccionarPaciente">Seleccionar</button>
                                                 <script>
-                                                    document.getElementById("cerrarModalBuscarPaciente").addEventListener("click", function() {
+                                                document.getElementById("cerrarModalBuscarPaciente").addEventListener(
+                                                    "click",
+                                                    function() {
                                                         var modal = document.getElementById("modalBuscarPaciente");
                                                         var modalInstance = bootstrap.Modal.getInstance(modal);
                                                         if (modalInstance) {
@@ -248,7 +283,8 @@
                                                         }
                                                     });
 
-                                                    document.getElementById("seleccionarPaciente").addEventListener("click", function() {
+                                                document.getElementById("seleccionarPaciente").addEventListener("click",
+                                                    function() {
                                                         var modal = document.getElementById("modalBuscarPaciente");
                                                         var modalInstance = bootstrap.Modal.getInstance(modal);
                                                         if (modalInstance) {
@@ -268,17 +304,19 @@
                             <div class="row mb-3 text-center">
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="primeraVisita">
-                                        <label class="form-check-label" for="primeraVisita">
-                                            <i class="ri-checkbox-circle-line"></i> Registro Visita
+                                        <input class="form-check-input custom-checkbox" type="checkbox" id="nuevaAlta">
+                                        <label class="form-check-label custom-label" for="nuevaAlta">
+                                            <strong><i class="ri-checkbox-circle-line"></i> Registrar Nueva
+                                                alta</strong>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="nuevaAlta">
-                                        <label class="form-check-label" for="nuevaAlta">
-                                            <i class="ri-checkbox-circle-line"></i>Registrar Nueva alta
+                                        <input class="form-check-input custom-checkbox" type="checkbox"
+                                            id="primeraVisita">
+                                        <label class="form-check-label custom-label" for="primeraVisita">
+                                            <strong><i class="ri-checkbox-circle-line"></i> Registro Visita</strong>
                                         </label>
                                     </div>
                                 </div>
@@ -295,7 +333,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="primerApellido" class="form-label">
-                                            <i class="ri-user-line"></i> Primer apellido <span class="text-danger">*</span>
+                                            <i class="ri-user-line"></i> Primer apellido <span
+                                                class="text-danger">*</span>
                                         </label>
                                         <input type="text" class="form-control" id="primerApellido">
                                     </div>
@@ -336,25 +375,27 @@
                                         <input type="email" class="form-control" id="email">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="portalPaciente" class="form-label">
-                                            <i class="ri-user-line"></i> Portal del Paciente
-                                        </label>
-                                        <input type="text" class="form-control" id="portalPaciente">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
                                         <label for="procedencia" class="form-label">
                                             <i class="ri-map-pin-line"></i> Procedencia
                                         </label>
                                         <input type="text" class="form-control" id="procedencia">
                                     </div>
+                                </div>
+                                <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <label for="tarifasMutuas" class="form-label">
-                                            <i class="ri-money-dollar-circle-line"></i> Tarifas/mutuas
+                                        <label for="tipoDocumento" class="form-label">
+                                            <i class="ri-file-list-line"></i> Tipo de Documento
                                         </label>
-                                        <input type="text" class="form-control" id="tarifasMutuas" placeholder="Busca tarifa/mutua">
+                                        <select class="form-control" id="tipoDocumento">
+                                            <option value="" selected disabled>Seleccione un tipo</option>
+                                            <option value="CC">Cédula de Ciudadanía</option>
+                                            <option value="TI">Tarjeta de Identidad</option>
+                                            <option value="CE">Cédula de Extranjería</option>
+                                            <option value="PA">Pasaporte</option>
+                                            <option value="RC">Registro Civil</option>
+                                        </select>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -370,7 +411,8 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label for="primerApellidoAlta" class="form-label">
-                                            <i class="ri-user-line"></i> Primer apellido <span class="text-danger">*</span>
+                                            <i class="ri-user-line"></i> Primer apellido <span
+                                                class="text-danger">*</span>
                                         </label>
                                         <input type="text" class="form-control" id="primerApellidoAlta">
                                     </div>
@@ -397,24 +439,28 @@
                                             <option>Femenino</option>
                                         </select>
                                     </div>
+                                    <!-- Campo de selección -->
                                     <div class="col-md-4">
-                                        <label for="paisAlta" class="form-label">
-                                            <i class="ri-map-pin-line"></i> País de origen
+                                        <label for="pais" class="form-label">
+                                            <i class="ri-map-pin-line"></i> País de origen/Nacionalidad
                                         </label>
-                                        <input type="text" class="form-control" id="paisAlta" value="España">
+                                        <select id="pais" class="form-control">
+                                            <option value="" disabled selected>Selecciona un país</option>
+                                        </select>
+                                        <!-- Campo para "Otro" -->
+                                        <input type="text" id="otroPais" class="form-control mt-2"
+                                            placeholder="Escribe tu país" style="display: none;">
                                     </div>
+
+
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-4">
                                         <label for="provinciaAlta" class="form-label">
                                             <i class="ri-map-pin-line"></i> Provincia
                                         </label>
-                                        <select class="form-select" id="provinciaAlta">
-                                            <option selected>Seleccione una provincia</option>
-                                            <option>Provincia 1</option>
-                                            <option>Provincia 2</option>
-                                            <option>Provincia 3</option>
-                                        </select>
+                                        <input type="text" class="form-control" id="provinciaAlta"
+                                            placeholder="Ingrese una provincia">
                                     </div>
                                     <div class="col-md-4">
                                         <label for="poblacionAlta" class="form-label">
@@ -489,7 +535,8 @@
                                             <label for="tarifasMutuasAlta" class="form-label">
                                                 <i class="ri-map-pin-line"></i>Procedencia
                                             </label>
-                                            <input type="text" class="form-control" id="procedencia" placeholder="Procedencia">
+                                            <input type="text" class="form-control" id="procedencia"
+                                                placeholder="Procedencia">
                                         </label>
 
                                     </div>
@@ -497,13 +544,14 @@
                                         <label for="tarifasMutuasAlta" class="form-label">
                                             <i class="ri-money-dollar-circle-line"></i> Aseguradora
                                         </label>
-                                        <input type="text" class="form-control" id="tarifasMutuasAlta" placeholder="Aseguradora">
+                                        <input type="text" class="form-control" id="tarifasMutuasAlta"
+                                            placeholder="Aseguradora">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-12">
                                         <label for="observacionesAlta" class="form-label">
-                                            <i class="ri-file-text-line"></i> Observaciones
+                                            <i class="ri-file-text-line"></i> OBSERVACIONES DE LA CITA 
                                         </label>
                                         <textarea class="form-control" id="observacionesAlta" rows="3"></textarea>
                                     </div>
@@ -523,7 +571,7 @@
                             <!-- Observaciones -->
                             <div class="mb-3">
                                 <label for="observaciones" class="form-label">
-                                    <i class="ri-file-text-line"></i> Observaciones
+                                    <i class="ri-file-text-line"></i> OBSERVACIONES DE LA CITA 
                                 </label>
                                 <textarea class="form-control" id="observaciones" rows="3"></textarea>
                             </div>
@@ -562,119 +610,196 @@
         </div>
 
         <!-- Contenedor del calendario -->
-        <div >
+        <div>
             <div id="calendar"></div>
         </div>
     </div>
 
     <script>
-        $(document).ready(function() {
-            $.getScript('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/es.js', function() {
-                // Definir nombres de meses con la primera letra en mayúscula
-                const monthNames = [
-                    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-                ];
-                const monthNamesShort = [
-                    'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
-                    'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
-                ];
+    $(document).ready(function() {
+        $.getScript('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/es.js', function() {
+            // Definir nombres de meses con la primera letra en mayúscula
+            const monthNames = [
+                'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+            ];
+            const monthNamesShort = [
+                'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
+                'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
+            ];
 
-                // Inicializar el calendario principal
-                $('#calendar').fullCalendar({
-                    header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'month,agendaWeek,agendaDay,agendaMulti'
-                    },
-                    defaultView: 'month', // Vista por defecto: mes
-                    defaultDate: new Date(),
-                    editable: true,
-                    events: 'php/get_events.php',
-                    locale: 'es',
-                    monthNames: monthNames, // Nombres de meses completos
-                    monthNamesShort: monthNamesShort, // Nombres de meses abreviados
-                    slotLabelFormat: 'h:mm A', // Formato de 12 horas
-                    slotDuration: '01:00:00', // Intervalo de 1 hora
-                    slotLabelInterval: '01:00:00', // Intervalo de 1 hora
-                    allDaySlot: false, // Eliminar la sección "Todo el día"
-                    contentHeight: 'auto',
-                    timeFormat: 'h:mm A', // Formato de 12 horas
-                    views: {
-                        agendaMulti: {
-                            type: 'agenda',
-                            duration: {
-                                days: 3
-                            },
-                            buttonText: 'Multi',
-                        }
-                    },
-                    eventRender: function(event, element) {
-                        // Capitalizar la primera letra del título del evento
-                        event.title = event.title.charAt(0).toUpperCase() + event.title.slice(1);
-                        element.find('.fc-title').text(event.title);
-                    },
-                    eventClick: function(event) {
-                        alert('Evento: ' + event.title);
+            // Inicializar el calendario principal
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay,agendaMulti'
+                },
+                defaultView: 'month', // Vista por defecto: mes
+                defaultDate: new Date(),
+                editable: true,
+                events: 'php/get_events.php',
+                locale: 'es',
+                monthNames: monthNames, // Nombres de meses completos
+                monthNamesShort: monthNamesShort, // Nombres de meses abreviados
+                slotLabelFormat: 'h:mm A', // Formato de 12 horas
+                slotDuration: '01:00:00', // Intervalo de 1 hora
+                slotLabelInterval: '01:00:00', // Intervalo de 1 hora
+                allDaySlot: false, // Eliminar la sección "Todo el día"
+                contentHeight: 'auto',
+                timeFormat: 'h:mm A', // Formato de 12 horas
+                views: {
+                    agendaMulti: {
+                        type: 'agenda',
+                        duration: {
+                            days: 3
+                        },
+                        buttonText: 'Multi',
                     }
-                });
+                },
+                eventRender: function(event, element) {
+                    // Capitalizar la primera letra del título del evento
+                    event.title = event.title.charAt(0).toUpperCase() + event.title.slice(
+                        1);
+                    element.find('.fc-title').text(event.title);
+                },
+                eventClick: function(event) {
+                    alert('Evento: ' + event.title);
+                }
+            });
 
-                // Inicializar el mini calendario
-                $('#miniCalendar').fullCalendar({
-                    header: false, // Sin header
-                    defaultView: 'month', // Vista de mes
-                    defaultDate: new Date(),
-                    locale: 'es',
-                    monthNames: monthNames, // Nombres de meses completos
-                    monthNamesShort: monthNamesShort, // Nombres de meses abreviados
-                    height: 'auto',
-                    fixedWeekCount: false, // No mostrar semanas adicionales
-                    dayClick: function(date, jsEvent, view) {
-                        // Al hacer clic en una fecha, puedes redirigir o actualizar el calendario principal
-                        $('#calendar').fullCalendar('gotoDate', date);
-                        $('.dropdown-menu').removeClass('show'); // Cerrar el dropdown
-                    }
-                });
+            // Inicializar el mini calendario
+            $('#miniCalendar').fullCalendar({
+                header: false, // Sin header
+                defaultView: 'month', // Vista de mes
+                defaultDate: new Date(),
+                locale: 'es',
+                monthNames: monthNames, // Nombres de meses completos
+                monthNamesShort: monthNamesShort, // Nombres de meses abreviados
+                height: 'auto',
+                fixedWeekCount: false, // No mostrar semanas adicionales
+                dayClick: function(date, jsEvent, view) {
+                    // Al hacer clic en una fecha, puedes redirigir o actualizar el calendario principal
+                    $('#calendar').fullCalendar('gotoDate', date);
+                    $('.dropdown-menu').removeClass('show'); // Cerrar el dropdown
+                }
             });
         });
+    });
 
-        document.getElementById('nuevaAlta').addEventListener('change', function() {
-            var submenuAlta = document.getElementById('submenuNuevaAlta');
-            var submenuVisita = document.getElementById('submenuPrimeraVisita');
-            var checkboxVisita = document.getElementById('primeraVisita');
+    document.getElementById('nuevaAlta').addEventListener('change', function() {
+        var submenuAlta = document.getElementById('submenuNuevaAlta');
+        var submenuVisita = document.getElementById('submenuPrimeraVisita');
+        var checkboxVisita = document.getElementById('primeraVisita');
 
-            if (this.checked) {
-                submenuAlta.style.display = 'block';
-                submenuVisita.style.display = 'none';
-                checkboxVisita.checked = false; // Desmarcar el checkbox de "Primera visita"
+        if (this.checked) {
+            submenuAlta.style.display = 'block';
+            submenuVisita.style.display = 'none';
+            checkboxVisita.checked = false; // Desmarcar el checkbox de "Primera visita"
+        } else {
+            submenuAlta.style.display = 'none';
+        }
+    });
+
+    document.getElementById('primeraVisita').addEventListener('change', function() {
+        var submenuVisita = document.getElementById('submenuPrimeraVisita');
+        var submenuAlta = document.getElementById('submenuNuevaAlta');
+        var checkboxAlta = document.getElementById('nuevaAlta');
+
+        if (this.checked) {
+            submenuVisita.style.display = 'block';
+            submenuAlta.style.display = 'none';
+            checkboxAlta.checked = false; // Desmarcar el checkbox de "Nueva alta"
+        } else {
+            submenuVisita.style.display = 'none';
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const modalBuscarPaciente = document.getElementById("modalBuscarPaciente");
+
+        modalBuscarPaciente.addEventListener("hidden.bs.modal", function(event) {
+            event.stopPropagation(); // Evita que el cierre se propague a otros modales abiertos
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const paisesEuropeos = [{
+                code: "de",
+                name: "Alemania"
+            },
+            {
+                code: "fr",
+                name: "Francia"
+            },
+            {
+                code: "es",
+                name: "España"
+            },
+            {
+                code: "it",
+                name: "Italia"
+            },
+            {
+                code: "gb",
+                name: "Reino Unido"
+            },
+            {
+                code: "pt",
+                name: "Portugal"
+            },
+            {
+                code: "nl",
+                name: "Países Bajos"
+            },
+            {
+                code: "se",
+                name: "Suecia"
+            },
+            {
+                code: "no",
+                name: "Noruega"
+            },
+            {
+                code: "fi",
+                name: "Finlandia"
+            }
+        ];
+
+        const select = document.querySelector("#pais");
+
+        // Agregar opciones de países
+        paisesEuropeos.forEach(pais => {
+            const option = document.createElement("option");
+            option.value = pais.name;
+            option.innerHTML = `🇪🇺 ${pais.name}`;
+            select.appendChild(option);
+        });
+
+        // Agregar la opción "Otro"
+        const otroOption = document.createElement("option");
+        otroOption.value = "otro";
+        otroOption.innerText = "Otro";
+        select.appendChild(otroOption);
+
+        // Inicializar Choices.js
+        const choices = new Choices(select, {
+            allowHTML: true,
+            removeItemButton: true,
+            searchEnabled: true
+        });
+
+        // Mostrar input cuando se elige "Otro"
+        select.addEventListener("change", function() {
+            const otroInput = document.getElementById("otroPais");
+            if (this.value === "otro") {
+                otroInput.style.display = "block";
             } else {
-                submenuAlta.style.display = 'none';
+                otroInput.style.display = "none";
             }
         });
-
-        document.getElementById('primeraVisita').addEventListener('change', function() {
-            var submenuVisita = document.getElementById('submenuPrimeraVisita');
-            var submenuAlta = document.getElementById('submenuNuevaAlta');
-            var checkboxAlta = document.getElementById('nuevaAlta');
-
-            if (this.checked) {
-                submenuVisita.style.display = 'block';
-                submenuAlta.style.display = 'none';
-                checkboxAlta.checked = false; // Desmarcar el checkbox de "Nueva alta"
-            } else {
-                submenuVisita.style.display = 'none';
-            }
-        });
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const modalBuscarPaciente = document.getElementById("modalBuscarPaciente");
-
-            modalBuscarPaciente.addEventListener("hidden.bs.modal", function(event) {
-                event.stopPropagation(); // Evita que el cierre se propague a otros modales abiertos
-            });
-        });
+    });
     </script>
-
 
     <script src="Js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

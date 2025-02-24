@@ -26,17 +26,15 @@
     <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator.min.css" rel="stylesheet">
     <!-- Incluye Tabulator JS -->
     <script src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
+    <!--cdn-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
 </head>
 
 <body>
     <?php include_once "../global/navbar.php" ?>
-    <?php // include_once "../global/menu.php" 
-    ?>
-    <br><br>
-    <div class="container-fluid mt-5">
-        <h2 class="text-center mb-4">Listado de Pacientes</h2>
-    </div>
+    <?php include_once "../global/table_utility.php" ?>
 
+    <br><br><br>
     <div class="row mx-auto p-2" style="width: 120rem;">
         <!-- Rectángulo 1: Agregar Paciente -->
         <div class="col-md-3 p-0">
@@ -46,7 +44,7 @@
                         <i class="ri-user-add-line fs-1"></i> <!-- Icono de agregar -->
                     </div>
                     <div>
-                        <a class="card-title" href="../Pacientes/agregar.php">Agregar Paciente</a>
+                        <a class="card-title" href="../Pacientes/agregar.php">REGISTRAR NUEVA ALTA</a>
                         <p class="card-text">Registrar un nuevo paciente en el sistema.</p>
                     </div>
                 </div>
@@ -62,7 +60,8 @@
                     </div>
                     <div>
                         <!-- Botón para abrir el modal de editar -->
-                        <button class="card-title btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#modalEditarPaciente">
+                        <button class="card-title btn btn-link p-0" data-bs-toggle="modal"
+                            data-bs-target="#modalEditarPaciente">
                             Editar Paciente
                         </button>
                         <p class="card-text">Modificar los datos de un paciente registrado.</p>
@@ -80,7 +79,8 @@
                     </div>
                     <div>
                         <!-- Botón para abrir el modal de eliminar -->
-                        <button class="card-title btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#modalEliminarPaciente">
+                        <button class="card-title btn btn-link p-0" data-bs-toggle="modal"
+                            data-bs-target="#modalEliminarPaciente">
                             Eliminar Paciente
                         </button>
                         <p class="card-text">Eliminar un paciente del sistema de manera segura.</p>
@@ -98,7 +98,8 @@
                     </div>
                     <div>
                         <!-- Botón para abrir el modal de desactivar -->
-                        <button class="card-title btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#modalDesactivarPaciente">
+                        <button class="card-title btn btn-link p-0" data-bs-toggle="modal"
+                            data-bs-target="#modalDesactivarPaciente">
                             Consolidado del paciente
                         </button>
                         <p class="card-text">Desactivar temporalmente el acceso de un paciente en el sistema.</p>
@@ -108,8 +109,9 @@
         </div>
     </div>
 
-    <!-- Modal para Editar Paciente -->
-    <div class="modal fade" id="modalEditarPaciente" tabindex="-1" aria-labelledby="modalEditarPacienteLabel" aria-hidden="true">
+    <!-- Modal de Editar Paciente -->
+    <div class="modal fade" id="modalEditarPaciente" tabindex="-1" aria-labelledby="modalEditarPacienteLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -117,30 +119,37 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Formulario para buscar paciente -->
+                    <!-- Formulario de búsqueda -->
                     <form id="formBuscarEditar">
                         <div class="mb-3">
-                            <label for="buscarIdEditar" class="form-label">Documento de identidad del Paciente</label>
-                            <input type="text" class="form-control" id="buscarIdEditar" name="id" required>
+                            <label for="nombreBuscarEditar" class="form-label">Nombre del Paciente</label>
+                            <input type="text" class="form-control" id="nombreBuscarEditar"
+                                placeholder="Ingrese el nombre">
                         </div>
-                        <button type="submit" class="btn btn-warning">Buscar</button>
-                    </form>
-                    <!-- Formulario para editar paciente (se muestra después de buscar) -->
-                    <form id="formEditarPaciente" style="display: none;">
                         <div class="mb-3">
-                            <label for="editarNombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="editarNombre" name="nombre" required>
+                            <label for="documentoBuscarEditar" class="form-label">Documento de Identidad</label>
+                            <input type="text" class="form-control" id="documentoBuscarEditar"
+                                placeholder="Ingrese el documento">
                         </div>
-                        <!-- Agrega más campos aquí -->
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+
                     </form>
+                    <!-- Resultados de la búsqueda (se llenará dinámicamente) -->
+                    <div id="resultadosEditar" class="mt-3">
+                        <!-- Aquí se mostrarán los resultados de la búsqueda -->
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <!-- Modal para Eliminar Paciente -->
-    <div class="modal fade" id="modalEliminarPaciente" tabindex="-1" aria-labelledby="modalEliminarPacienteLabel" aria-hidden="true">
+    <!-- Modal de Eliminar Paciente -->
+    <div class="modal fade" id="modalEliminarPaciente" tabindex="-1" aria-labelledby="modalEliminarPacienteLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -148,147 +157,92 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Formulario para buscar paciente -->
+                    <!-- Formulario de búsqueda -->
                     <form id="formBuscarEliminar">
                         <div class="mb-3">
-                            <label for="buscarIdEliminar" class="form-label">Documento de identidad del Paciente</label>
-                            <input type="text" class="form-control" id="buscarIdEliminar" name="id" required>
+                            <label for="nombreBuscarEliminar" class="form-label">Nombre del Paciente</label>
+                            <input type="text" class="form-control" id="nombreBuscarEliminar"
+                                placeholder="Ingrese el nombre">
                         </div>
-                        <button type="submit" class="btn btn-danger">Buscar</button>
+                        <div class="mb-3">
+                            <label for="documentoBuscarEliminar" class="form-label">Documento de Identidad</label>
+                            <input type="text" class="form-control" id="documentoBuscarEliminar"
+                                placeholder="Ingrese el documento">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+
                     </form>
-                    <!-- Confirmación de eliminación (se muestra después de buscar) -->
-                    <div id="confirmacionEliminar" style="display: none;">
-                        <p>¿Estás seguro de eliminar este paciente?</p>
-                        <button class="btn btn-danger" onclick="eliminarPaciente()">Eliminar</button>
+                    <!-- Resultados de la búsqueda (se llenará dinámicamente) -->
+                    <div id="resultadosEliminar" class="mt-3">
+                        <!-- Aquí se mostrarán los resultados de la búsqueda -->
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+    <br>
+    <div class="container">
+        <table class="table table-striped" id="idTabla">
+            <thead class="table table-dark">
+                <tr>
+                    <th colspan="10" class="text-center text-uppercase fs-4">PACIENTES EN ALTA</th>
+                </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Tipo de Documento</th>
+                    <th>Número de Documento</th>
+                    <th>Nacionalidad</th>
+                    <th>Edad</th>
+                    <th>Sexo</th>
+                    <th>Móvil</th>
+                    <th>Email</th>
+                    <th>Procedencia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                try {
+                    // Consulta para obtener los datos de los pacientes
+                    $sqlPacientes = "SELECT nombre, primer_apellido, segundo_apellido, tipo_documento, 
+                                numero_documento, pais_origen, fecha_nacimiento, sexo, movil, email, procedencia 
+                                FROM pacientes";
+                    $stmt = $conn->prepare($sqlPacientes);
+                    $stmt->execute();
+                    $pacientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    <div class="container-fluid mt-5">
-        <!-- Campo de búsqueda global -->
-        <input type="text" id="buscador-global" class="form-control" placeholder="Buscar...">
-        <!-- Contenedor para la tabla -->
-        <div id="tabla-pacientes"></div>
+                    // Mostrar los datos en la tabla
+                    foreach ($pacientes as $paciente) {
+                        // Calcular la edad
+                        $fechaNacimiento = new DateTime($paciente['fecha_nacimiento']);
+                        $hoy = new DateTime();
+                        $edad = $hoy->diff($fechaNacimiento)->y;
+                ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($paciente['nombre']); ?></td>
+                    <td><?php echo htmlspecialchars($paciente['primer_apellido'] . " " . $paciente['segundo_apellido']); ?>
+                    </td>
+                    <td><?php echo htmlspecialchars($paciente['tipo_documento']); ?></td>
+                    <td><?php echo htmlspecialchars($paciente['numero_documento']); ?></td>
+                    <td><?php echo htmlspecialchars($paciente['pais_origen']); ?></td>
+                    <td><?php echo $edad; ?></td>
+                    <td><?php echo htmlspecialchars($paciente['sexo']); ?></td>
+                    <td><?php echo htmlspecialchars($paciente['movil']); ?></td>
+                    <td><?php echo htmlspecialchars($paciente['email']); ?></td>
+                    <td><?php echo htmlspecialchars($paciente['procedencia']); ?></td>
+                </tr>
+                <?php }
+                } catch (PDOException $e) {
+                    echo "<tr><td colspan='10' class='text-center'>Error al obtener los datos: " . $e->getMessage() . "</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Configuración de Tabulator
-            var table = new Tabulator("#tabla-pacientes", {
-                layout: "fitColumns", // Ajustar columnas al contenedor
-                pagination: "local", // Habilitar paginación
-                paginationSize: 10, // Número de filas por página
-                ajaxURL: "obtener_pacientes.php", // URL para obtener datos desde PHP
-                columns: [{
-                        title: "Nombre",
-                        field: "nombre",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Primer Apellido",
-                        field: "primer_apellido",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Segundo Apellido",
-                        field: "segundo_apellido",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Fecha de Nacimiento",
-                        field: "fecha_nacimiento",
-                        sorter: "date"
-                    },
-                    {
-                        title: "Sexo",
-                        field: "sexo",
-                        sorter: "string"
-                    },
-                    {
-                        title: "País de Origen",
-                        field: "pais_origen",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Provincia",
-                        field: "provincia",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Población",
-                        field: "poblacion",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Tipo de Documento",
-                        field: "tipo_documento",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Número de Documento",
-                        field: "numero_documento",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Dirección",
-                        field: "direccion",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Código Postal",
-                        field: "codigo_postal",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Teléfono",
-                        field: "telefono",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Móvil",
-                        field: "movil",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Email",
-                        field: "email",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Procedencia",
-                        field: "procedencia",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Aseguradora",
-                        field: "aseguradora",
-                        sorter: "string"
-                    },
-                    {
-                        title: "Observaciones",
-                        field: "observaciones",
-                        sorter: "string"
-                    },
-                ],
-            });
-
-            // Configurar el buscador global
-            document.getElementById("buscador-global").addEventListener("input", function(e) {
-                var valor = e.target.value.toLowerCase(); // Convertir a minúsculas
-                table.setFilter(function(data) {
-                    // Buscar en todas las columnas
-                    for (var key in data) {
-                        if (data[key] && data[key].toString().toLowerCase().includes(valor)) {
-                            return true;
-                        }
-                    }
-                    return false;
-                });
-            });
-        });
-    </script>
 
     <script src="Js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

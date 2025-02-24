@@ -32,6 +32,12 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
 
+                    <!-- Botón de Alertas -->
+                    <li class="nav-item me-3">
+                        <a class="btn btn-light position-relative" href="../Agenda/agenda.php">
+                            <i class="ri-heart-pulse-line"></i>
+                        </a>
+                    </li>
                     <!-- Botón de home -->
                     <li class="nav-item me-3">
                         <a class="btn btn-light position-relative" href="../home/home.php">

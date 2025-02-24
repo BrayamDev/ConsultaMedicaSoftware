@@ -614,3 +614,20 @@ body {
     border-color: #00695c; /* Color más oscuro al enfocar */
     box-shadow: 0 0 0 2px rgba(0, 130, 111, 0.2); /* Sombra suave */
 }
+
+#calendar {
+    width: 50%; /* Ajusta el ancho */
+    height: 400px; /* Ajusta la altura */
+    margin: 0 auto; /* Centra el calendario */
+}
+
+/* Aumentar el tamaño de los checkboxes */
+.custom-checkbox {
+    transform: scale(1.5); /* Aumenta el tamaño del checkbox */
+    margin-right: 10px; /* Ajusta el espacio entre el checkbox y la etiqueta */
+}
+
+/* Aumentar el tamaño de las etiquetas */
+.custom-label {
+    font-size: 1em; /* Aumenta el tamaño de la fuente */
+}
