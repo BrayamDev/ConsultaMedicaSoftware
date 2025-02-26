@@ -186,7 +186,7 @@
     <br>
     <div class="container">
         <table class="table table-striped" id="idTabla">
-            <thead class="table table-dark">
+            <thead class="table table-success">
                 <tr>
                     <th colspan="10" class="text-center text-uppercase fs-4">PACIENTES EN ALTA</th>
                 </tr>

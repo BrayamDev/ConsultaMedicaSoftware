@@ -39,7 +39,7 @@ include_once "../global/conexion.php";
     <br><br><br>
     <div class="container mt-5">
         <h2 class="mb-4">Pacientes</h2>
-        
+
         <!-- Formulario en una sola fila -->
         <form class="row g-3 align-items-center">
             <!-- Checkbox -->
@@ -77,57 +77,57 @@ include_once "../global/conexion.php";
 
     <br>
     <div class="container">
-        <table class="table table-striped" id="idTabla">
-            <thead class="table table-dark">
-                <tr>
-                    <th colspan="4" class="text-center text-uppercase fs-4">CONSOLIDADO DE PACIENTES</th>
-                </tr>
-                <tr>
-                    <th>NUMERO DE LA HISTORIA</th>
-                    <th>NOMBRE DEL PACIENTE</th>
-                    <th>FECHA DE ALTA</th>
-                    <th>OPCIONES</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                try {
-                    // Consulta para obtener los datos de la historia clínica y el nombre del paciente
-                    $sql = "SELECT HC.id, P.nombre AS NOMBRE_PACIENTE, HC.FECHA_ALTA 
-                            FROM HISTORIA_CLINICA HC
-                            JOIN PACIENTES P ON HC.id_paciente = P.id";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->execute();
-                    $historias = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                } catch (PDOException $e) {
-                    echo "Error al obtener los datos: " . $e->getMessage();
-                }
-                foreach ($historias as $historia): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($historia['id']); ?></td>
-                        <td><?php echo htmlspecialchars($historia['NOMBRE_PACIENTE']); ?></td>
-                        <td><?php echo htmlspecialchars($historia['FECHA_ALTA']); ?></td>
-                        <td>
-                            <!-- Icono para Ver Información del Paciente -->
-                            <a href="#" title="Ver Información del Paciente" class="btn btn-success btn-sm">
-                                <i class="ri-user-line ri-lg"></i>
-                            </a>
+    <table class="table table-striped mx-auto" id="idTabla">
+        <thead class="table table-success">
+            <tr>
+                <th colspan="4" class="text-center text-uppercase fs-4">CONSOLIDADO DE PACIENTES</th>
+            </tr>
+            <tr class="text-start"> <!-- Alinear el contenido de las celdas del encabezado al inicio -->
+                <th class="text-center" >NUMERO DE LA HISTORIA</th>
+                <th class="text-center" >NOMBRE DEL PACIENTE</th>
+                <th class="text-center" >FECHA DE ALTA</th>
+                <th class="text-center" >OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            try {
+                // Consulta para obtener los datos de la historia clínica y el nombre del paciente
+                $sql = "SELECT HC.id, P.nombre AS NOMBRE_PACIENTE, HC.FECHA_ALTA 
+                        FROM HISTORIA_CLINICA HC
+                        JOIN PACIENTES P ON HC.id_paciente = P.id";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+                $historias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo "Error al obtener los datos: " . $e->getMessage();
+            }
+            foreach ($historias as $historia): ?>
+                <tr class="text-start"> <!-- Alinear el contenido de las celdas del cuerpo al inicio -->
+                    <td class="text-center"><?php echo htmlspecialchars($historia['id']); ?></td>
+                    <td class="text-center"><?php echo htmlspecialchars($historia['NOMBRE_PACIENTE']); ?></td>
+                    <td class="text-center"><?php echo htmlspecialchars($historia['FECHA_ALTA']); ?></td>
+                    <td class="text-center">
+                        <!-- Icono para Ver Información del Paciente -->
+                        <a href="#" title="Ver Información del Paciente" class="btn btn-success btn-sm">
+                            <i class="ri-user-line ri-lg"></i>
+                        </a>
 
-                            <!-- Icono para Ver Historia Clínica -->
-                            <a href="#" title="Ver Historia Clínica" class="btn btn-success btn-sm">
-                                <i class="ri-file-text-line ri-lg"></i>
-                            </a>
+                        <!-- Icono para Ver Historia Clínica -->
+                        <a href="#" title="Ver Historia Clínica" class="btn btn-success btn-sm">
+                            <i class="ri-file-text-line ri-lg"></i>
+                        </a>
 
-                            <!-- Icono para Ver Documentos del Paciente -->
-                            <a href="#" title="Ver Documentos del Paciente" class="btn btn-success btn-sm">
-                                <i class="ri-folder-line ri-lg"></i>
-                            </a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
+                        <!-- Icono para Ver Documentos del Paciente -->
+                        <a href="#" title="Ver Documentos del Paciente" class="btn btn-success btn-sm">
+                            <i class="ri-folder-line ri-lg"></i>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
 
     <script src="Js/script.js"></script>
