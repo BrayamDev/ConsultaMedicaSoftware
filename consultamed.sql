@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2025 a las 16:15:20
+-- Tiempo de generación: 26-02-2025 a las 16:30:57
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `consultamed`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historia_clinica`
+--
+
+CREATE TABLE `historia_clinica` (
+  `id` int(11) NOT NULL,
+  `id_paciente` int(11) DEFAULT NULL,
+  `fecha_alta` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `historia_clinica`
+--
+
+INSERT INTO `historia_clinica` (`id`, `id_paciente`, `fecha_alta`) VALUES
+(1, 1, '2024-08-16'),
+(2, 2, '2020-09-27'),
+(3, 3, '2020-12-04');
 
 -- --------------------------------------------------------
 
@@ -113,6 +134,13 @@ INSERT INTO `usuarios` (`id`, `nombre_user`, `nombre_completo`, `contrasena_user
 --
 
 --
+-- Indices de la tabla `historia_clinica`
+--
+ALTER TABLE `historia_clinica`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_paciente` (`id_paciente`);
+
+--
 -- Indices de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
@@ -131,6 +159,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `historia_clinica`
+--
+ALTER TABLE `historia_clinica`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
@@ -141,6 +175,16 @@ ALTER TABLE `pacientes`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `historia_clinica`
+--
+ALTER TABLE `historia_clinica`
+  ADD CONSTRAINT `historia_clinica_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `pacientes` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

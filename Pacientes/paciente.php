@@ -98,10 +98,9 @@
                     </div>
                     <div>
                         <!-- Botón para abrir el modal de desactivar -->
-                        <button class="card-title btn btn-link p-0" data-bs-toggle="modal"
-                            data-bs-target="#modalDesactivarPaciente">
+                        <a class="card-title btn btn-link p-0" href="../Pacientes/consolidado_pacientes.php">
                             Consolidado del paciente
-                        </button>
+                        </a>
                         <p class="card-text">Desactivar temporalmente el acceso de un paciente en el sistema.</p>
                     </div>
                 </div>
