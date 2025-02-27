@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-02-2025 a las 16:30:57
+-- Tiempo de generación: 27-02-2025 a las 03:24:48
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `consultamed`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `especialidadesmedicas`
+--
+
+CREATE TABLE `especialidadesmedicas` (
+  `Id` int(11) NOT NULL,
+  `Nombre` varchar(100) NOT NULL,
+  `Descripcion` text DEFAULT NULL,
+  `Estado` tinyint(1) NOT NULL DEFAULT 1,
+  `FechaCreacion` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `especialidadesmedicas`
+--
+
+INSERT INTO `especialidadesmedicas` (`Id`, `Nombre`, `Descripcion`, `Estado`, `FechaCreacion`) VALUES
+(1, 'Medicina General', 'Atención primaria y prevención de enfermedades en pacientes de todas las edades.', 1, '2025-02-27 01:36:56'),
+(2, 'Cardiología', 'Diagnóstico y tratamiento de enfermedades del corazón y el sistema circulatorio.', 1, '2025-02-27 01:36:56'),
+(3, 'Neurología', 'Estudio y tratamiento de trastornos del sistema nervioso.', 1, '2025-02-27 01:36:56'),
+(4, 'Pediatría', 'Atención médica especializada en niños y adolescentes.', 1, '2025-02-27 01:36:56'),
+(5, 'Dermatología', 'Diagnóstico y tratamiento de enfermedades de la piel, cabello y uñas.', 1, '2025-02-27 01:36:56');
 
 -- --------------------------------------------------------
 
@@ -134,6 +159,13 @@ INSERT INTO `usuarios` (`id`, `nombre_user`, `nombre_completo`, `contrasena_user
 --
 
 --
+-- Indices de la tabla `especialidadesmedicas`
+--
+ALTER TABLE `especialidadesmedicas`
+  ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `Nombre` (`Nombre`);
+
+--
 -- Indices de la tabla `historia_clinica`
 --
 ALTER TABLE `historia_clinica`
@@ -157,6 +189,12 @@ ALTER TABLE `usuarios`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `especialidadesmedicas`
+--
+ALTER TABLE `especialidadesmedicas`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `historia_clinica`

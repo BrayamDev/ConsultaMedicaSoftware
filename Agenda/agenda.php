@@ -104,6 +104,14 @@
                     </div>
                     <div class="modal-body">
                         <form>
+
+                            <?php
+                            // Consulta para obtener las especialidades médicas
+                            $sql = "SELECT nombre FROM especialidadesmedicas";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->execute();
+                            $especialidades = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            ?>
                             <!-- Fecha y Hora y Especialidades en la misma fila -->
                             <div class="row mb-3">
                                 <div class="col-md-6">
@@ -118,8 +126,12 @@
                                             class="text-danger">*</span>
                                     </label>
                                     <select class="form-select" id="especialidad">
-                                        <option selected>Medicina General</option>
-                                        <option>Otra Especialidad</option>
+                                        <option selected>Seleccione una especialidad</option>
+                                        <?php foreach ($especialidades as $especialidad): ?>
+                                        <option value="<?php echo htmlspecialchars($especialidad['nombre']); ?>">
+                                            <?php echo htmlspecialchars($especialidad['nombre']); ?>
+                                        </option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
@@ -152,6 +164,7 @@
                                 </div>
 
                                 <!-- Modal para el resumen del usuario -->
+                                <!-- Modal para el resumen del usuario -->
                                 <div class="modal fade" id="modalResumenUsuario" tabindex="-1"
                                     aria-labelledby="modalResumenUsuarioLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -165,10 +178,13 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!-- Contenido del resumen del usuario -->
-                                                <p><strong>Nombre:</strong> Juan Pérez</p>
-                                                <p><strong>Edad:</strong> 30 años</p>
-                                                <p><strong>Última visita:</strong> 10/10/2023</p>
-                                                <p><strong>Diagnóstico:</strong> Resfriado común</p>
+                                                <p><strong>Nombre:</strong> <span id="resumenNombre"></span></p>
+                                                <p><strong>Edad:</strong> <span id="resumenEdad"></span></p>
+                                                <p><strong>Sexo:</strong> <span id="resumenSexo"></span></p>
+                                                <p><strong>Móvil:</strong> <span id="resumenMovil"></span></p>
+                                                <p><strong>Email:</strong> <span id="resumenEmail"></span></p>
+                                                <p><strong>Procedencia:</strong> <span id="resumenProcedencia"></span>
+                                                </p>
                                             </div>
                                             <div class="modal-footer d-flex justify-content-between">
                                                 <button type="button" class="btn btn-info">
@@ -179,17 +195,6 @@
                                                 </button>
                                                 <button type="button" class="btn btn-secondary"
                                                     id="cerrarModalResumen">Cerrar</button>
-                                                <script>
-                                                document.getElementById("cerrarModalResumen").addEventListener("click",
-                                                    function() {
-                                                        var modal = document.getElementById("modalResumenUsuario");
-                                                        var modalInstance = bootstrap.Modal.getInstance(
-                                                            modal); // Obtiene la instancia activa del modal
-                                                        if (modalInstance) {
-                                                            modalInstance.hide(); // Cierra solo este modal
-                                                        }
-                                                    });
-                                                </script>
                                             </div>
                                         </div>
                                     </div>
@@ -211,58 +216,69 @@
                                             <div class="modal-body" style="overflow-y: auto;">
                                                 <!-- Campo de búsqueda y checkboxes -->
                                                 <div class="row mb-3">
-                                                    <div class="col-md-8">
+                                                    <div class="">
                                                         <input type="text" class="form-control" id="buscarPacienteInput"
                                                             placeholder="Buscar paciente...">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                id="checkComienzaPorTexto">
-                                                            <label class="form-check-label"
-                                                                for="checkComienzaPorTexto">Comienza por texto</label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                id="checkContieneTexto">
-                                                            <label class="form-check-label"
-                                                                for="checkContieneTexto">Contiene texto</label>
-                                                        </div>
                                                     </div>
                                                 </div>
 
                                                 <!-- Tabla de resultados -->
                                                 <div class="table-responsive">
-                                                    <table class="table table-bordered table-striped">
-                                                        <thead>
+                                                    <table class="table table-striped" id="idTabla">
+                                                        <thead class="table table-success">
                                                             <tr>
-                                                                <th>Paciente/Historia</th>
-                                                                <th>Doc ID</th>
+                                                                <th>Nombre</th>
+                                                                <th>Apellidos</th>
+                                                                <th>Tipo de Documento</th>
+                                                                <th>Número de Documento</th>
+                                                                <th>Nacionalidad</th>
+                                                                <th>Edad</th>
+                                                                <th>Sexo</th>
                                                                 <th>Móvil</th>
-                                                                <th>Teléfono</th>
-                                                                <th>Correo Electrónico</th>
-                                                                <th>Observaciones</th>
+                                                                <th>Email</th>
+                                                                <th>Procedencia</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
-                                                            <!-- Ejemplo de filas de datos -->
-                                                            <tr>
-                                                                <td>Juan Pérez</td>
-                                                                <td>12345678</td>
-                                                                <td>+34 600 123 456</td>
-                                                                <td>+34 91 123 45 67</td>
-                                                                <td>juan.perez@example.com</td>
-                                                                <td>Ninguna</td>
+                                                        <tbody id="tablaPacientes">
+                                                            <?php
+                                                            try {
+                                                                $sqlPacientes = "SELECT nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, pais_origen, fecha_nacimiento, sexo, movil, email, procedencia FROM pacientes";
+                                                                $stmt = $conn->prepare($sqlPacientes);
+                                                                $stmt->execute();
+                                                                $pacientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                                                                foreach ($pacientes as $paciente) {
+                                                                    $fechaNacimiento = new DateTime($paciente['fecha_nacimiento']);
+                                                                    $hoy = new DateTime();
+                                                                    $edad = $hoy->diff($fechaNacimiento)->y;
+                                                            ?>
+                                                            <tr class="fila-paciente"
+                                                                data-nombre="<?php echo htmlspecialchars($paciente['nombre'] . ' ' . $paciente['primer_apellido']); ?>">
+                                                                <td><?php echo htmlspecialchars($paciente['nombre']); ?>
+                                                                </td>
+                                                                <td><?php echo htmlspecialchars($paciente['primer_apellido'] . " " . $paciente['segundo_apellido']); ?>
+                                                                </td>
+                                                                <td><?php echo htmlspecialchars($paciente['tipo_documento']); ?>
+                                                                </td>
+                                                                <td><?php echo htmlspecialchars($paciente['numero_documento']); ?>
+                                                                </td>
+                                                                <td><?php echo htmlspecialchars($paciente['pais_origen']); ?>
+                                                                </td>
+                                                                <td><?php echo $edad; ?></td>
+                                                                <td><?php echo htmlspecialchars($paciente['sexo']); ?>
+                                                                </td>
+                                                                <td><?php echo htmlspecialchars($paciente['movil']); ?>
+                                                                </td>
+                                                                <td><?php echo htmlspecialchars($paciente['email']); ?>
+                                                                </td>
+                                                                <td><?php echo htmlspecialchars($paciente['procedencia']); ?>
+                                                                </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td>María Gómez</td>
-                                                                <td>87654321</td>
-                                                                <td>+34 600 654 321</td>
-                                                                <td>+34 91 654 32 10</td>
-                                                                <td>maria.gomez@example.com</td>
-                                                                <td>Alergia a la penicilina</td>
-                                                            </tr>
-                                                            <!-- Más filas pueden agregarse dinámicamente -->
+                                                            <?php }
+                                                            } catch (PDOException $e) {
+                                                                echo "<tr><td colspan='10' class='text-center'>Error: " . $e->getMessage() . "</td></tr>";
+                                                            }
+                                                            ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -296,8 +312,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
 
                             <!-- Primera visita y Nueva alta en la misma fila -->
@@ -465,7 +479,7 @@
                                 <div class="row mb-3">
                                     <div class="col-md-12">
                                         <label for="observacionesAlta" class="form-label">
-                                            <i class="ri-file-text-line"></i> OBSERVACIONES DE LA CITA 
+                                            <i class="ri-file-text-line"></i> OBSERVACIONES DE LA CITA
                                         </label>
                                         <textarea class="form-control" id="observacionesAlta" rows="3"></textarea>
                                     </div>
@@ -485,7 +499,7 @@
                             <!-- Observaciones -->
                             <div class="mb-3">
                                 <label for="observaciones" class="form-label">
-                                    <i class="ri-file-text-line"></i> OBSERVACIONES DE LA CITA 
+                                    <i class="ri-file-text-line"></i> OBSERVACIONES DE LA CITA
                                 </label>
                                 <textarea class="form-control" id="observaciones" rows="3"></textarea>
                             </div>
@@ -530,6 +544,51 @@
     </div>
 
     <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const inputBusqueda = document.getElementById("buscarPacienteInput");
+        const tablaPacientes = document.getElementById("tablaPacientes");
+        const filas = tablaPacientes.getElementsByTagName("tr");
+
+        // Filtrar en tiempo real por cualquier campo
+        inputBusqueda.addEventListener("keyup", function() {
+            const filtro = inputBusqueda.value.toLowerCase();
+
+            for (let i = 0; i < filas.length; i++) {
+                let textoFila = filas[i].textContent.toLowerCase();
+                filas[i].style.display = textoFila.includes(filtro) ? "" : "none";
+            }
+        });
+
+        // Seleccionar paciente al hacer clic en una fila
+        for (let fila of filas) {
+            fila.addEventListener("click", function() {
+                const datosPaciente = this.getElementsByTagName("td");
+                if (datosPaciente.length > 0) {
+                    const nombreCompleto =
+                        `${datosPaciente[0].innerText} ${datosPaciente[1].innerText}`;
+
+                    // Marcar la fila seleccionada
+                    for (let f of filas) {
+                        f.classList.remove("table-success");
+                    }
+                    this.classList.add("table-success");
+
+                    // Llenar el input con el paciente seleccionado
+                    document.getElementById("paciente").value = nombreCompleto;
+                }
+            });
+        }
+
+        // Botón para cerrar el modal al seleccionar paciente
+        document.getElementById("seleccionarPaciente").addEventListener("click", function() {
+            var modal = document.getElementById("modalBuscarPaciente");
+            var modalInstance = bootstrap.Modal.getInstance(modal);
+            if (modalInstance) {
+                modalInstance.hide();
+            }
+        });
+    });
+
     $(document).ready(function() {
         $.getScript('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale/es.js', function() {
             // Definir nombres de meses con la primera letra en mayúscula
