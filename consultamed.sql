@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-02-2025 a las 03:24:48
+-- Tiempo de generación: 28-02-2025 a las 20:42:52
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `consultamed`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `citas`
+--
+
+CREATE TABLE `citas` (
+  `id` int(11) NOT NULL,
+  `fecha_hora` datetime NOT NULL,
+  `EspecialidadId` int(11) NOT NULL,
+  `tiempo_visita` int(11) NOT NULL,
+  `PacienteId` int(11) NOT NULL,
+  `observaciones` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `citas`
+--
+
+INSERT INTO `citas` (`id`, `fecha_hora`, `EspecialidadId`, `tiempo_visita`, `PacienteId`, `observaciones`) VALUES
+(10, '2025-03-01 00:29:00', 1, 30, 3, ''),
+(11, '2025-03-08 09:04:00', 3, 15, 15, ''),
+(12, '2025-03-03 10:30:00', 4, 15, 26, ''),
+(13, '2025-03-01 10:12:00', 1, 30, 1, 'Paciente con gripe'),
+(14, '2025-02-28 02:31:00', 2, 30, 3, 'nueva cita'),
+(15, '2025-03-02 11:30:00', 1, 60, 6, 'Cita programada');
 
 -- --------------------------------------------------------
 
@@ -159,6 +186,14 @@ INSERT INTO `usuarios` (`id`, `nombre_user`, `nombre_completo`, `contrasena_user
 --
 
 --
+-- Indices de la tabla `citas`
+--
+ALTER TABLE `citas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `EspecialidadId` (`EspecialidadId`),
+  ADD KEY `PacienteId` (`PacienteId`);
+
+--
 -- Indices de la tabla `especialidadesmedicas`
 --
 ALTER TABLE `especialidadesmedicas`
@@ -191,6 +226,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `citas`
+--
+ALTER TABLE `citas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT de la tabla `especialidadesmedicas`
 --
 ALTER TABLE `especialidadesmedicas`
@@ -217,6 +258,13 @@ ALTER TABLE `usuarios`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `citas`
+--
+ALTER TABLE `citas`
+  ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`EspecialidadId`) REFERENCES `especialidadesmedicas` (`Id`),
+  ADD CONSTRAINT `citas_ibfk_2` FOREIGN KEY (`PacienteId`) REFERENCES `pacientes` (`id`);
 
 --
 -- Filtros para la tabla `historia_clinica`

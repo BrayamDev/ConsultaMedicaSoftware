@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="../css/estilos.css">
     <!-- Remix Icon CSS (para los iconos) -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-
+    <!-- Incluir Notiflix -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.js"></script>
     <!-- CSS for full calender -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
     <!-- JS for jQuery -->
@@ -72,7 +74,6 @@
                     </div>
                 </div>
 
-
                 <!-- Botón para abrir el modal -->
                 <div class="col-md-6">
                     <div class="row justify-content-center">
@@ -103,11 +104,10 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
-
+                        <form method="POST" action="nuevaCita.php">
                             <?php
-                            // Consulta para obtener las especialidades médicas
-                            $sql = "SELECT nombre FROM especialidadesmedicas";
+                            // Consulta para obtener las especialidades médicas (ID y nombre)
+                            $sql = "SELECT id, nombre FROM especialidadesmedicas"; // Cambia "id" si la columna tiene otro nombre
                             $stmt = $conn->prepare($sql);
                             $stmt->execute();
                             $especialidades = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -118,17 +118,18 @@
                                     <label for="fechaHora" class="form-label">
                                         <i class="ri-calendar-event-line"></i> Fecha y Hora
                                     </label>
-                                    <input type="datetime-local" class="form-control" id="fechaHora">
+                                    <input type="datetime-local" class="form-control" id="fechaHora" name="fechaHora"
+                                        required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="especialidad" class="form-label">
                                         <i class="ri-stethoscope-line"></i> Especialidades <span
                                             class="text-danger">*</span>
                                     </label>
-                                    <select class="form-select" id="especialidad">
+                                    <select class="form-select" id="especialidad" name="especialidad" required>
                                         <option selected>Seleccione una especialidad</option>
                                         <?php foreach ($especialidades as $especialidad): ?>
-                                        <option value="<?php echo htmlspecialchars($especialidad['nombre']); ?>">
+                                        <option value="<?php echo htmlspecialchars($especialidad['id']); ?>">
                                             <?php echo htmlspecialchars($especialidad['nombre']); ?>
                                         </option>
                                         <?php endforeach; ?>
@@ -143,12 +144,15 @@
                                         <i class="ri-time-line"></i> Tiempo visita (min) <span
                                             class="text-danger">*</span>
                                     </label>
-                                    <input type="number" class="form-control" id="tiempoVisita" value="30">
+                                    <input type="number" class="form-control" id="tiempoVisita" name="tiempoVisita"
+                                        value="30" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="paciente" class="form-label">
                                         <i class="ri-user-line"></i> Paciente <span class="text-danger">*</span>
                                     </label>
+                                    <input type="hidden" id="pacienteId" name="pacienteId">
+                                    <!-- Campo oculto fuera de la etiqueta <label> -->
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="paciente"
                                             placeholder="Buscar paciente">
@@ -163,7 +167,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Modal para el resumen del usuario -->
                                 <!-- Modal para el resumen del usuario -->
                                 <div class="modal fade" id="modalResumenUsuario" tabindex="-1"
                                     aria-labelledby="modalResumenUsuarioLabel" aria-hidden="true">
@@ -242,7 +245,7 @@
                                                         <tbody id="tablaPacientes">
                                                             <?php
                                                             try {
-                                                                $sqlPacientes = "SELECT nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, pais_origen, fecha_nacimiento, sexo, movil, email, procedencia FROM pacientes";
+                                                                $sqlPacientes = "SELECT id, nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, pais_origen, fecha_nacimiento, sexo, movil, email, procedencia FROM pacientes";
                                                                 $stmt = $conn->prepare($sqlPacientes);
                                                                 $stmt->execute();
                                                                 $pacientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -253,6 +256,7 @@
                                                                     $edad = $hoy->diff($fechaNacimiento)->y;
                                                             ?>
                                                             <tr class="fila-paciente"
+                                                                data-id="<?php echo htmlspecialchars($paciente['id']); ?>"
                                                                 data-nombre="<?php echo htmlspecialchars($paciente['nombre'] . ' ' . $paciente['primer_apellido']); ?>">
                                                                 <td><?php echo htmlspecialchars($paciente['nombre']); ?>
                                                                 </td>
@@ -274,7 +278,8 @@
                                                                 <td><?php echo htmlspecialchars($paciente['procedencia']); ?>
                                                                 </td>
                                                             </tr>
-                                                            <?php }
+                                                            <?php
+                                                                }
                                                             } catch (PDOException $e) {
                                                                 echo "<tr><td colspan='10' class='text-center'>Error: " . $e->getMessage() . "</td></tr>";
                                                             }
@@ -479,9 +484,10 @@
                                 <div class="row mb-3">
                                     <div class="col-md-12">
                                         <label for="observacionesAlta" class="form-label">
-                                            <i class="ri-file-text-line"></i> OBSERVACIONES DE LA CITA
+                                            <i class="ri-file-text-line"></i> Observaciones de la cita
                                         </label>
-                                        <textarea class="form-control" id="observacionesAlta" rows="3"></textarea>
+                                        <textarea class="form-control" id="observacionesAlta" name="observacionesAlta"
+                                            rows="3"></textarea>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -499,9 +505,10 @@
                             <!-- Observaciones -->
                             <div class="mb-3">
                                 <label for="observaciones" class="form-label">
-                                    <i class="ri-file-text-line"></i> OBSERVACIONES DE LA CITA
+                                    <i class="ri-file-text-line"></i> Observaciones de la cita
                                 </label>
-                                <textarea class="form-control" id="observaciones" rows="3"></textarea>
+                                <textarea class="form-control" id="observaciones" name="observaciones"
+                                    rows="3"></textarea>
                             </div>
 
                             <!-- Destaca, Cita múltiple profesional y Múltiple en la misma fila -->
@@ -515,24 +522,27 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="modal-footer">
+                                <!-- Botón Cerrar con icono -->
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <i class="ri-close-line"></i> <!-- Icono de cerrar -->
+                                </button>
+
+                                <!-- Botón Guardar con icono -->
+                                <button type="submit" class="btn btn-success"
+                                    style="background-color: #00826F; border: none;">
+                                    <i class="ri-save-line"></i> <!-- Icono de guardar -->
+                                </button>
+
+                                <!-- Botón Guardar e imprimir con icono -->
+                                <button type="button" class="btn btn-success"
+                                    style="background-color: #00826F; border: none;">
+                                    <i class="ri-printer-line"></i> <!-- Icono de imprimir -->
+                                </button>
+                            </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <!-- Botón Cerrar con icono -->
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            <i class="ri-close-line"></i> <!-- Icono de cerrar -->
-                        </button>
 
-                        <!-- Botón Guardar con icono -->
-                        <button type="button" class="btn btn-success" style="background-color: #00826F; border: none;">
-                            <i class="ri-save-line"></i> <!-- Icono de guardar -->
-                        </button>
-
-                        <!-- Botón Guardar e imprimir con icono -->
-                        <button type="button" class="btn btn-success" style="background-color: #00826F; border: none;">
-                            <i class="ri-printer-line"></i> <!-- Icono de imprimir -->
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -542,6 +552,42 @@
             <div id="calendar"></div>
         </div>
     </div>
+
+    <script>
+    <?php if (isset($_GET['agendaSuccess'])) { ?>
+    Notiflix.Notify.init({
+        position: 'right-top',
+        timeout: 4000,
+        width: '500px',
+        fontSize: '20px',
+        borderRadius: '12px',
+        cssAnimationStyle: 'zoom',
+        success: {
+            background: '#008000', // Color de fondo para éxito
+            textColor: '#FFFFFF', // Color del texto
+        },
+    });
+
+    Notiflix.Notify.success('<?php echo $_GET['agendaSuccess']; ?>');
+    <?php } ?>
+
+    <?php if (isset($_GET['agendaError'])) { ?>
+    Notiflix.Notify.init({
+        position: 'right-top',
+        timeout: 4000,
+        width: '500px',
+        fontSize: '20px',
+        borderRadius: '12px',
+        cssAnimationStyle: 'zoom',
+        failure: {
+            background: '#ab2e46', // Color de fondo para error
+            textColor: '#FFFFFF', // Color del texto
+        },
+    });
+
+    Notiflix.Notify.failure('<?php echo $_GET['agendaError']; ?>');
+    <?php } ?>
+    </script>
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -565,7 +611,8 @@
                 const datosPaciente = this.getElementsByTagName("td");
                 if (datosPaciente.length > 0) {
                     const nombreCompleto =
-                        `${datosPaciente[0].innerText} ${datosPaciente[1].innerText}`;
+                    `${datosPaciente[0].innerText} ${datosPaciente[1].innerText}`;
+                    const pacienteId = this.getAttribute("data-id"); // Obtiene el ID del paciente
 
                     // Marcar la fila seleccionada
                     for (let f of filas) {
@@ -575,6 +622,8 @@
 
                     // Llenar el input con el paciente seleccionado
                     document.getElementById("paciente").value = nombreCompleto;
+                    document.getElementById("pacienteId").value =
+                    pacienteId; // Asigna el ID al campo oculto
                 }
             });
         }
@@ -601,44 +650,64 @@
                 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
             ];
 
-            // Inicializar el calendario principal
-            $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay,agendaMulti'
-                },
-                defaultView: 'month', // Vista por defecto: mes
-                defaultDate: new Date(),
-                editable: true,
-                events: 'php/get_events.php',
-                locale: 'es',
-                monthNames: monthNames, // Nombres de meses completos
-                monthNamesShort: monthNamesShort, // Nombres de meses abreviados
-                slotLabelFormat: 'h:mm A', // Formato de 12 horas
-                slotDuration: '01:00:00', // Intervalo de 1 hora
-                slotLabelInterval: '01:00:00', // Intervalo de 1 hora
-                allDaySlot: false, // Eliminar la sección "Todo el día"
-                contentHeight: 'auto',
-                timeFormat: 'h:mm A', // Formato de 12 horas
-                views: {
-                    agendaMulti: {
-                        type: 'agenda',
-                        duration: {
-                            days: 3
-                        },
-                        buttonText: 'Multi',
+            $(document).ready(function() {
+                $('#calendar').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
+                    defaultView: 'month', // Vista por defecto: mes
+                    defaultDate: new Date(),
+                    editable: true,
+                    events: '../Agenda/get_events.php', // Ruta para obtener eventos desde la base de datos
+                    locale: 'es',
+                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre',
+                        'Diciembre'
+                    ],
+                    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul',
+                        'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
+                    ],
+                    slotLabelFormat: 'h:mm A', // Formato de 12 horas
+                    slotDuration: '01:00:00', // Intervalo de 1 hora
+                    slotLabelInterval: '01:00:00', // Intervalo de 1 hora
+                    allDaySlot: false, // Eliminar la sección "Todo el día"
+                    contentHeight: 'auto',
+                    timeFormat: 'h:mm A', // Formato de 12 horas
+                    eventRender: function(event, element) {
+                        element.find('.fc-title').html(`
+                            <strong>${event.title}</strong><br>
+                            <small>Paciente ID: ${event.paciente}</small><br>
+                            <small>${event.start.format('HH:mm')} - ${event.end.format('HH:mm')}</small>
+                        `);
+                    },
+                    eventClick: function(event) {
+                        alert(
+                            `Cita: ${event.title}\nPaciente: ${event.paciente}\nHora: ${event.start.format('HH:mm')}`);
                     }
-                },
-                eventRender: function(event, element) {
-                    // Capitalizar la primera letra del título del evento
-                    event.title = event.title.charAt(0).toUpperCase() + event.title.slice(
-                        1);
-                    element.find('.fc-title').text(event.title);
-                },
-                eventClick: function(event) {
-                    alert('Evento: ' + event.title);
-                }
+                });
+
+                document.querySelector("form").addEventListener("submit", function(event) {
+                    event.preventDefault();
+                    const formData = new FormData(this);
+
+                    fetch("nuevaCita.php", {
+                            method: "POST",
+                            body: formData
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            alert(data);
+                            $('#calendar').fullCalendar('refetchEvents');
+                            const modal = bootstrap.Modal.getInstance(document
+                                .getElementById("nuevaCitaModal"));
+                            modal.hide();
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                        });
+                });
             });
 
             // Inicializar el mini calendario
@@ -774,7 +843,6 @@
     });
     </script>
 
-    <script src="Js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script>

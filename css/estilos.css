@@ -631,3 +631,19 @@ body {
 .custom-label {
     font-size: 1em; /* Aumenta el tamaño de la fuente */
 }
+
+.fc-event {
+    background-color: #4CAF50; /* Color de fondo */
+    border-color: #4CAF50; /* Color del borde */
+    color: #fff; /* Color del texto */
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.fc-event .fc-title {
+    font-weight: bold;
+}
+
+.fc-event .fc-time {
+    font-size: 12px;
+}
